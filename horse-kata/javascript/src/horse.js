@@ -4,7 +4,11 @@
 import { PaginatedTable } from './paginated-table';
 
 export function filterSortPaginateTable(headers, tableData, filters, sortMetadata, paginationMetadata) {
-  tableData = filters.length > 0 ? tableData.filter(i => i[0] === 'Bicycle') : tableData;
+  const filter = filters[0];
+  const filterIndex = filter ? headers.indexOf(filter.column) : -1;
+  if (filterIndex !== -1) {
+    tableData = tableData.filter(i => i[filterIndex] === filter.value);
+  }
 
   // TODO: sort horse table using sortMetadata
 

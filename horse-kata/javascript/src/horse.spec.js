@@ -37,3 +37,16 @@ test('when one filter is provided then returns table data matching the filter', 
 
   t.deepEqual(table.tableData, [['Bicycle']])
 });
+
+test('when filter provided for a header then table data is filtered based on the filtered header', t => {
+  const filters = [new FilterMetadata('Height', '1.5')];
+  const headers = [ 'Breed', 'Height' ];
+  const tableData = [['Thoroughbred', '1.2'], ['Bicycle', '1.5'], ['Boxer', '1.5']];
+
+  const table = filterSortPaginateTable(headers, tableData, filters, null, null);
+
+  t.deepEqual(table.tableData, [
+    ['Bicycle', '1.5'],
+    ['Boxer', '1.5']
+  ])
+});
