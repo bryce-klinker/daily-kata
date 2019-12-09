@@ -1,9 +1,9 @@
 import test from 'ava';
-import { DataTable } from './data-table';
 import { PaginationMetadata } from './pagination-metadata';
+import { PaginatedTable } from './paginated-table';
 
 test('when getting first page then returns only the first page of results', t => {
-  const dataTable = new DataTable(['Breed'], [['Thoroughbred'], ['Bicycle'], ['Boxer']]);
+  const dataTable = new PaginatedTable(['Breed'], [['Thoroughbred'], ['Bicycle'], ['Boxer']]);
   const paginationMetadata = new PaginationMetadata(1, 2);
 
   const actual = dataTable.paginate(paginationMetadata);
@@ -16,7 +16,7 @@ test('when getting first page then returns only the first page of results', t =>
 });
 
 test('when getting second page then returns first record in second page', t => {
-  const dataTable = new DataTable(['Breed'], [['Thoroughbred'], ['Bicycle'], ['Boxer']]);
+  const dataTable = new PaginatedTable(['Breed'], [['Thoroughbred'], ['Bicycle'], ['Boxer']]);
   const paginationMetadata = new PaginationMetadata(2, 2);
 
   const actual = dataTable.paginate(paginationMetadata);
@@ -28,7 +28,7 @@ test('when getting second page then returns first record in second page', t => {
 });
 
 test('when paging then returns table with a total record count', t => {
-  const dataTable = new DataTable(['Breed'], [['1'], ['2'], ['3'], ['4']]);
+  const dataTable = new PaginatedTable(['Breed'], [['1'], ['2'], ['3'], ['4']]);
   const paginationMetadata = new PaginationMetadata(2, 1);
 
   const actual = dataTable.paginate(paginationMetadata);
@@ -37,7 +37,7 @@ test('when paging then returns table with a total record count', t => {
 });
 
 test('when no pagigation provided then returns data table with all rows', t => {
-  const dataTable = new DataTable(['Breed'], [['1'], ['2'], ['3'], ['4']]);
+  const dataTable = new PaginatedTable(['Breed'], [['1'], ['2'], ['3'], ['4']]);
 
   const actual = dataTable.paginate(null);
 
