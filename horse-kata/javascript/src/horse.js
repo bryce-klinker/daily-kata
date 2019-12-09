@@ -27,6 +27,9 @@ function sortTableData(sortMetadata, headers, tableData) {
 
   const sortIndex = headers.indexOf(sortMetadata.column);
   tableData.sort((a, b) => {
+    if (a[sortIndex] === b[sortIndex])
+      return 0;
+
     return a[sortIndex] < b[sortIndex]
       ? -1
       : 1;
