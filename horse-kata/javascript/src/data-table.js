@@ -3,10 +3,12 @@ import { TableRowComparer } from './table-row-comparer';
 export class DataTable {
   headers;
   tableData;
+  totalRows;
 
-  constructor(headers, tableData) {
+  constructor(headers, tableData, totalRows = null) {
     this.headers = headers;
     this.tableData = tableData;
+    this.totalRows = totalRows;
   }
 
   getColumnIndex = (columnName) => {
@@ -34,10 +36,11 @@ export class DataTable {
   };
 
   paginate = (paginationMetadata) => {
+    const totalRows = this.tableData.length;
     const startIndex = (paginationMetadata.pageNumber - 1) * paginationMetadata.pageSize;
     const endIndex = startIndex + paginationMetadata.pageSize;
     const pagedData = this.tableData.slice(startIndex, endIndex);
-    return new DataTable(this.headers, pagedData);
+    return new DataTable(this.headers, pagedData, totalRows);
   };
 
   _createComparer = (sortMetadata) => {

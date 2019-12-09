@@ -26,3 +26,12 @@ test('when getting second page then returns first record in second page', t => {
     ['Boxer']
   ]);
 });
+
+test('when paging then returns table with a total record count', t => {
+  const dataTable = new DataTable(['Breed'], [['1'], ['2'], ['3'], ['4']]);
+  const paginationMetadata = new PaginationMetadata(2, 1);
+
+  const actual = dataTable.paginate(paginationMetadata);
+
+  t.is(actual.totalRows, 4);
+});
