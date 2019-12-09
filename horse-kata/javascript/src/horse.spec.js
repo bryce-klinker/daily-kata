@@ -2,7 +2,7 @@ import test from 'ava';
 import * as SampleHorseData from './test_support/sample-data';
 import {filterSortPaginateTable} from './horse';
 
-test('FilterSortPaginate', t => {
+test.skip('FilterSortPaginate', t => {
   const headers = SampleHorseData.getSampleHeaders();
   const tableData = SampleHorseData.getSampleTableData();
   const filters = SampleHorseData.getSampleFilters();
@@ -17,4 +17,9 @@ test('FilterSortPaginate', t => {
     ['Thoroughbred', 'Bay', '1.6', '3', 'true'],
     ['Thoroughbred', 'Grey', '1.55', '3', 'true']
   ])
+});
+
+test('when headers are provided then returns the same headers', t => {
+  const table = filterSortPaginateTable(['Breed', 'Height'], [], [], null, null);
+  t.deepEqual(table.headers, ['Breed', 'Height'])
 });
