@@ -25,16 +25,5 @@ function sortTableData(sortMetadata, headers, tableData) {
     return tableData;
   }
 
-  const sortIndex = headers.indexOf(sortMetadata.column);
-  const sortingSeed = sortMetadata.sortOrder === 'Ascending' ? 1 : -1;
-  tableData.sort((a, b) => {
-
-    if (a[sortIndex] === b[sortIndex])
-      return 0;
-
-    return a[sortIndex] < b[sortIndex]
-      ? sortingSeed * -1
-      : sortingSeed;
-  });
-  return tableData;
+  return sortMetadata.sortTable(headers, tableData);
 }
