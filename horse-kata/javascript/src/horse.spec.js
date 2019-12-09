@@ -99,3 +99,15 @@ test('when sorting column with the same value in each item then returns table in
   t.deepEqual(table.tableData[1], [ 'Bicycle', 'Blue' ]);
   t.deepEqual(table.tableData[2], [ 'Boxer', 'Blue' ]);
 });
+
+test('when sorting in descending order then returns table data in descending sorted order', t => {
+  const headers = [ 'Breed' ];
+  const tableData = [ [ 'Thoroughbred' ], [ 'Bicycle' ], [ 'Boxer' ] ];
+  const sortMetadata = new SortMetadata('Breed', 'Descending');
+
+  const table = filterSortPaginateTable(headers, tableData, [], sortMetadata, null);
+
+  t.deepEqual(table.tableData[0], [ 'Thoroughbred' ]);
+  t.deepEqual(table.tableData[1], [ 'Boxer' ]);
+  t.deepEqual(table.tableData[2], [ 'Bicycle' ]);
+});

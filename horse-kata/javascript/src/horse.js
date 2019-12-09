@@ -26,13 +26,15 @@ function sortTableData(sortMetadata, headers, tableData) {
   }
 
   const sortIndex = headers.indexOf(sortMetadata.column);
+  const sortingSeed = sortMetadata.sortOrder === 'Ascending' ? 1 : -1;
   tableData.sort((a, b) => {
+
     if (a[sortIndex] === b[sortIndex])
       return 0;
 
     return a[sortIndex] < b[sortIndex]
-      ? -1
-      : 1;
+      ? sortingSeed * -1
+      : sortingSeed;
   });
   return tableData;
 }
