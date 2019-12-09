@@ -10,18 +10,7 @@ export class SortMetadata {
     this.sortOrder = sortOrder;
   }
 
-  sortTable(dataTable) {
-    const sortIndex = dataTable.getColumnIndex(this.column);
-    const sortingSeed = this.sortOrder === 'Ascending' ? 1 : -1;
-    dataTable.tableData.sort((a, b) => {
-
-      if (a[sortIndex] === b[sortIndex])
-        return 0;
-
-      return a[sortIndex] < b[sortIndex]
-        ? sortingSeed * -1
-        : sortingSeed;
-    });
-    return dataTable;
+  getSortingSeed() {
+    return this.sortOrder === 'Ascending' ? 1 : -1;
   }
 }

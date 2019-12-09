@@ -16,6 +16,18 @@ export class DataTable {
         return this;
     }
 
-    return sortMetadata.sortTable(this);
+    const sortedTable = [...this.tableData];
+    const sortingSeed = sortMetadata.getSortingSeed();
+    const sortIndex = this.getColumnIndex(sortMetadata.column);
+    sortedTable.sort((a, b) => {
+      if (a[sortIndex] === b[sortIndex])
+        return 0;
+
+      return a[sortIndex] < b[sortIndex]
+        ? sortingSeed * -1
+        : sortingSeed;
+    });
+    return new DataTable(this.headers, sortedTable);
   }
 }
+
