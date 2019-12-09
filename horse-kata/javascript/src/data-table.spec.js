@@ -35,3 +35,13 @@ test('when paging then returns table with a total record count', t => {
 
   t.is(actual.totalRows, 4);
 });
+
+test('when no pagigation provided then returns data table with all rows', t => {
+  const dataTable = new DataTable(['Breed'], [['1'], ['2'], ['3'], ['4']]);
+
+  const actual = dataTable.paginate(null);
+
+  t.is(actual.totalRows, 4);
+  t.deepEqual(actual.tableData, [['1'], ['2'], ['3'], ['4']]);
+  t.deepEqual(actual.headers, ['Breed'])
+});

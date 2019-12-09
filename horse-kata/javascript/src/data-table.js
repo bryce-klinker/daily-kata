@@ -37,6 +37,9 @@ export class DataTable {
 
   paginate = (paginationMetadata) => {
     const totalRows = this.tableData.length;
+    if (!paginationMetadata) {
+      return new DataTable(this.headers, this.tableData, totalRows);
+    }
     const startIndex = (paginationMetadata.pageNumber - 1) * paginationMetadata.pageSize;
     const endIndex = startIndex + paginationMetadata.pageSize;
     const pagedData = this.tableData.slice(startIndex, endIndex);
