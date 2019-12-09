@@ -33,6 +33,11 @@ export class DataTable {
     return new DataTable(this.headers, filteredTableData);
   };
 
+  paginate = () => {
+    const pagedData = this.tableData.slice(0, 2);
+    return new DataTable(this.headers, pagedData);
+  };
+
   _createComparer = (sortMetadata) => {
     const sortingSeed = sortMetadata.getSortingSeed();
     const sortIndex = this.getColumnIndex(sortMetadata.column);
