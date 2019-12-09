@@ -2,6 +2,7 @@ import test from 'ava';
 import * as SampleHorseData from './test_support/sample-data';
 import { filterSortPaginateTable } from './horse';
 import { FilterMetadata } from './filter-metadata';
+import { SortMetadata } from './sort-metadata';
 
 test.skip('FilterSortPaginate', t => {
   const headers = SampleHorseData.getSampleHeaders();
@@ -58,8 +59,19 @@ test('when two filters are provided then returns table filtered using both filte
 
   const table = filterSortPaginateTable(headers, tableData, filters, null, null);
 
-  console.log(JSON.stringify(table.tableData));
   t.deepEqual(table.tableData, [
     [ 'Boxer', '1.5' ]
   ]);
+});
+
+test('when sorting metadata is provided then returns table sorted by the column in sort metadata', t => {
+  const headers = [ 'Breed' ];
+  const tableData = [ [ 'Thoroughbred' ], [ 'Bicycle' ], [ 'Boxer' ] ];
+  const sortMetadata = new SortMetadata('Breed', 'Ascending');
+
+  const table = filterSortPaginateTable(headers, tableData, [], sortMetadata, null);
+
+  t.deepEqual(table.tableData[0], [ 'Bicycle' ]);
+  t.deepEqual(table.tableData[1], [ 'Boxer' ]);
+  t.deepEqual(table.tableData[2], [ 'Thoroughbred' ]);
 });
