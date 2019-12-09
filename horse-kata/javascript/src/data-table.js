@@ -7,27 +7,43 @@ export class DataTable {
     this.tableData = tableData;
   }
 
-  getColumnIndex(columnName) {
+  getColumnIndex = (columnName) => {
     return this.headers.indexOf(columnName);
-  }
+  };
 
-  sort(sortMetadata) {
+  sort = (sortMetadata) => {
     if (!sortMetadata) {
-        return this;
+      return this;
     }
 
-    const sortedTable = [...this.tableData];
+    const sortedTable = [ ...this.tableData ];
+    const comparer = this._createComparer(sortMetadata);
+    sortedTable.sort(comparer.compare);
+    return new DataTable(this.headers, sortedTable);
+  };
+
+  _createComparer = (sortMetadata) => {
     const sortingSeed = sortMetadata.getSortingSeed();
     const sortIndex = this.getColumnIndex(sortMetadata.column);
-    sortedTable.sort((a, b) => {
-      if (a[sortIndex] === b[sortIndex])
-        return 0;
-
-      return a[sortIndex] < b[sortIndex]
-        ? sortingSeed * -1
-        : sortingSeed;
-    });
-    return new DataTable(this.headers, sortedTable);
-  }
+    return new TableRowComparer(sortingSeed, sortIndex);
+  };
 }
 
+class TableRowComparer {
+  sortIndex;
+  sortingSeed;
+
+  constructor(sortingSeed, sortIndex) {
+    this.sortingSeed = sortingSeed;
+    this.sortIndex = sortIndex;
+  }
+
+  compare = (a, b) => {
+    if (a[this.sortIndex] === b[this.sortIndex])
+      return 0;
+
+    return a[this.sortIndex] < b[this.sortIndex]
+      ? this.sortingSeed * -1
+      : this.sortingSeed;
+  };
+}
