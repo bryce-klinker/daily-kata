@@ -33,8 +33,10 @@ export class DataTable {
     return new DataTable(this.headers, filteredTableData);
   };
 
-  paginate = () => {
-    const pagedData = this.tableData.slice(0, 2);
+  paginate = (paginationMetadata) => {
+    const startIndex = (paginationMetadata.pageNumber - 1) * paginationMetadata.pageSize;
+    const endIndex = startIndex + paginationMetadata.pageSize;
+    const pagedData = this.tableData.slice(startIndex, endIndex);
     return new DataTable(this.headers, pagedData);
   };
 

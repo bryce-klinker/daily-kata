@@ -3,7 +3,7 @@ import { DataTable } from './data-table';
 import { PaginationMetadata } from './pagination-metadata';
 
 test('when getting first page then returns only the first page of results', t => {
-  const dataTable = new DataTable([ 'Breed' ], [ [ 'Thoroughbred' ], [ 'Bicycle' ], [ 'Boxer' ] ]);
+  const dataTable = new DataTable(['Breed'], [['Thoroughbred'], ['Bicycle'], ['Boxer']]);
   const paginationMetadata = new PaginationMetadata(1, 2);
 
   const actual = dataTable.paginate(paginationMetadata);
@@ -12,5 +12,17 @@ test('when getting first page then returns only the first page of results', t =>
   t.deepEqual(actual.tableData, [
     ['Thoroughbred'],
     ['Bicycle']
-  ])
+  ]);
+});
+
+test('when getting second page then returns first record in second page', t => {
+  const dataTable = new DataTable(['Breed'], [['Thoroughbred'], ['Bicycle'], ['Boxer']]);
+  const paginationMetadata = new PaginationMetadata(2, 2);
+
+  const actual = dataTable.paginate(paginationMetadata);
+
+  t.deepEqual(actual.headers, ['Breed']);
+  t.deepEqual(actual.tableData, [
+    ['Boxer']
+  ]);
 });
