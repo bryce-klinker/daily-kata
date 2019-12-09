@@ -13,10 +13,9 @@ export function filterSortPaginateTable(headers, tableData, filters, sortMetadat
 }
 
 function filterTableData(filters, headers, tableData) {
-  const filter = filters[0];
-  if (filter) {
-    const filterIndex = filter ? headers.indexOf(filter.column) : -1;
+  filters.forEach(filter => {
+    const filterIndex = headers.indexOf(filter.column);
     tableData = tableData.filter(i => i[filterIndex] === filter.value);
-  }
+  });
   return tableData;
 }

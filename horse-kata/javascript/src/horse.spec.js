@@ -50,3 +50,16 @@ test('when filter provided for a header then table data is filtered based on the
     [ 'Boxer', '1.5' ]
   ]);
 });
+
+test('when two filters are provided then returns table filtered using both filters', t => {
+  const filters = [ new FilterMetadata('Height', '1.5'), new FilterMetadata('Breed', 'Boxer') ];
+  const headers = [ 'Breed', 'Height' ];
+  const tableData = [ [ 'Thoroughbred', '1.2' ], [ 'Bicycle', '1.5' ], [ 'Boxer', '1.5' ] ];
+
+  const table = filterSortPaginateTable(headers, tableData, filters, null, null);
+
+  console.log(JSON.stringify(table.tableData));
+  t.deepEqual(table.tableData, [
+    [ 'Boxer', '1.5' ]
+  ]);
+});
