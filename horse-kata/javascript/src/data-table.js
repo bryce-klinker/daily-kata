@@ -24,6 +24,15 @@ export class DataTable {
     return new DataTable(this.headers, sortedTable);
   };
 
+  filter = (filters) => {
+    let filteredTableData = [...this.tableData];
+    filters.forEach(filter => {
+      const filterIndex = this.getColumnIndex(filter.column);
+      filteredTableData = filteredTableData.filter(i => i[filterIndex] === filter.value);
+    });
+    return new DataTable(this.headers, filteredTableData);
+  };
+
   _createComparer = (sortMetadata) => {
     const sortingSeed = sortMetadata.getSortingSeed();
     const sortIndex = this.getColumnIndex(sortMetadata.column);
