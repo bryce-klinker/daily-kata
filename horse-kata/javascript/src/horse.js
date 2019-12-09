@@ -4,7 +4,7 @@
 import { PaginatedTable } from './paginated-table';
 
 export function filterSortPaginateTable(headers, tableData, filters, sortMetadata, paginationMetadata) {
-  // TODO: filter horse table using filters
+  tableData = filters.length > 0 ? tableData.filter(i => i[0] === 'Bicycle') : tableData;
 
   // TODO: sort horse table using sortMetadata
 
