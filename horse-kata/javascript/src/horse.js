@@ -2,11 +2,14 @@
  * This method is called by the front end when it wants to display a page of horse data.
  */
 import { PaginatedTable } from './paginated-table';
+import { DataTable } from './data-table';
 
 export function filterSortPaginateTable(headers, tableData, filters, sortMetadata, paginationMetadata) {
-  tableData = filterTableData(filters, headers, tableData);
+  let dataTable = new DataTable(headers, tableData);
+  tableData = filterTableData(filters, dataTable.headers, dataTable.tableData);
 
-  tableData = sortTableData(sortMetadata, headers, tableData);
+  dataTable = new DataTable(headers, tableData);
+  tableData = sortTableData(sortMetadata, dataTable);
 
   // TODO: paginate horse table using paginationMetadata
   return new PaginatedTable(headers, tableData);
@@ -20,10 +23,10 @@ function filterTableData(filters, headers, tableData) {
   return tableData;
 }
 
-function sortTableData(sortMetadata, headers, tableData) {
+function sortTableData(sortMetadata, dataTable) {
   if (!sortMetadata) {
-    return tableData;
+    return dataTable.tableData;
   }
 
-  return sortMetadata.sortTable(headers, tableData);
+  return sortMetadata.sortTable(dataTable.headers, dataTable.tableData);
 }
