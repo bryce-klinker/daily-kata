@@ -9,5 +9,5 @@ export function filterSortPaginateTable(headers, tableData, filters, sortMetadat
   // TODO: sort horse table using sortMetadata
 
   // TODO: paginate horse table using paginationMetadata
-  return new PaginatedTable(headers);
+  return new PaginatedTable(headers, tableData);
 }
