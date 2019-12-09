@@ -1,8 +1,6 @@
 import test from 'ava';
 import * as SampleHorseData from './test_support/sample-data';
 import { filterSortPaginateTable } from './horse';
-import { FilterMetadata } from './filter-metadata';
-import { SortMetadata } from './sort-metadata';
 
 test('FilterSortPaginate', t => {
   const headers = SampleHorseData.getSampleHeaders();
@@ -24,85 +22,4 @@ test('FilterSortPaginate', t => {
 test('when no filters, sorting, or pagination is provided then returns unmodified table data', t => {
   const table = filterSortPaginateTable([ 'Breed' ], [ [ 'Original' ], [ 'Table' ], [ 'Data' ] ], [], null, null);
   t.deepEqual(table.tableData, [ [ 'Original' ], [ 'Table' ], [ 'Data' ] ]);
-});
-
-test('when one filter is provided then returns table data matching the filter', t => {
-  const filters = [ new FilterMetadata('Breed', 'Bicycle') ];
-
-  const table = filterSortPaginateTable([ 'Breed' ], [ [ 'Thoroughbred' ], [ 'Bicycle' ] ], filters, null, null);
-
-  t.deepEqual(table.tableData, [ [ 'Bicycle' ] ]);
-});
-
-test('when filter provided for a header then table data is filtered based on the filtered header', t => {
-  const filters = [ new FilterMetadata('Height', '1.5') ];
-  const headers = [ 'Breed', 'Height' ];
-  const tableData = [ [ 'Thoroughbred', '1.2' ], [ 'Bicycle', '1.5' ], [ 'Boxer', '1.5' ] ];
-
-  const table = filterSortPaginateTable(headers, tableData, filters, null, null);
-
-  t.deepEqual(table.tableData, [
-    [ 'Bicycle', '1.5' ],
-    [ 'Boxer', '1.5' ]
-  ]);
-});
-
-test('when two filters are provided then returns table filtered using both filters', t => {
-  const filters = [ new FilterMetadata('Height', '1.5'), new FilterMetadata('Breed', 'Boxer') ];
-  const headers = [ 'Breed', 'Height' ];
-  const tableData = [ [ 'Thoroughbred', '1.2' ], [ 'Bicycle', '1.5' ], [ 'Boxer', '1.5' ] ];
-
-  const table = filterSortPaginateTable(headers, tableData, filters, null, null);
-
-  t.deepEqual(table.tableData, [
-    [ 'Boxer', '1.5' ]
-  ]);
-});
-
-test('when sorting metadata is provided then returns table sorted by the column in sort metadata', t => {
-  const headers = [ 'Breed' ];
-  const tableData = [ [ 'Thoroughbred' ], [ 'Bicycle' ], [ 'Boxer' ] ];
-  const sortMetadata = new SortMetadata('Breed', 'Ascending');
-
-  const table = filterSortPaginateTable(headers, tableData, [], sortMetadata, null);
-
-  t.deepEqual(table.tableData[0], [ 'Bicycle' ]);
-  t.deepEqual(table.tableData[1], [ 'Boxer' ]);
-  t.deepEqual(table.tableData[2], [ 'Thoroughbred' ]);
-});
-
-test('when sorting by specific header then returns table sorted by the correct header', t => {
-  const headers = [ 'Breed', 'Colour' ];
-  const tableData = [ [ 'Thoroughbred', 'Azure' ], [ 'Bicycle', 'Blue' ], [ 'Boxer', 'Black' ] ];
-  const sortMetadata = new SortMetadata('Colour', 'Ascending');
-
-  const table = filterSortPaginateTable(headers, tableData, [], sortMetadata, null);
-
-  t.deepEqual(table.tableData[0], [ 'Thoroughbred', 'Azure' ]);
-  t.deepEqual(table.tableData[1], [ 'Boxer', 'Black' ]);
-  t.deepEqual(table.tableData[2], [ 'Bicycle', 'Blue' ]);
-});
-
-test('when sorting column with the same value in each item then returns table in the same order it is in', t => {
-  const headers = [ 'Breed', 'Colour' ];
-  const tableData = [ [ 'Thoroughbred', 'Blue' ], [ 'Bicycle', 'Blue' ], [ 'Boxer', 'Blue' ] ];
-  const sortMetadata = new SortMetadata('Colour', 'Ascending');
-
-  const table = filterSortPaginateTable(headers, tableData, [], sortMetadata, null);
-
-  t.deepEqual(table.tableData[0], [ 'Thoroughbred', 'Blue' ]);
-  t.deepEqual(table.tableData[1], [ 'Bicycle', 'Blue' ]);
-  t.deepEqual(table.tableData[2], [ 'Boxer', 'Blue' ]);
-});
-
-test('when sorting in descending order then returns table data in descending sorted order', t => {
-  const headers = [ 'Breed' ];
-  const tableData = [ [ 'Thoroughbred' ], [ 'Bicycle' ], [ 'Boxer' ] ];
-  const sortMetadata = new SortMetadata('Breed', 'Descending');
-
-  const table = filterSortPaginateTable(headers, tableData, [], sortMetadata, null);
-
-  t.deepEqual(table.tableData[0], [ 'Thoroughbred' ]);
-  t.deepEqual(table.tableData[1], [ 'Boxer' ]);
-  t.deepEqual(table.tableData[2], [ 'Bicycle' ]);
 });
