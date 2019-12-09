@@ -21,11 +21,6 @@ test('FilterSortPaginate', t => {
   ]);
 });
 
-test('when headers are provided then returns the same headers', t => {
-  const table = filterSortPaginateTable([ 'Breed', 'Height' ], [], [], null, null);
-  t.deepEqual(table.headers, [ 'Breed', 'Height' ]);
-});
-
 test('when no filters, sorting, or pagination is provided then returns unmodified table data', t => {
   const table = filterSortPaginateTable([ 'Breed' ], [ [ 'Original' ], [ 'Table' ], [ 'Data' ] ], [], null, null);
   t.deepEqual(table.tableData, [ [ 'Original' ], [ 'Table' ], [ 'Data' ] ]);

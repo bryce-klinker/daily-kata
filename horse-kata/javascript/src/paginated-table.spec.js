@@ -1,6 +1,22 @@
 import test from 'ava';
 import { PaginationMetadata } from './pagination-metadata';
 import { PaginatedTable } from './paginated-table';
+import { filterSortPaginateTable } from './horse';
+import { FilterMetadata } from './filter-metadata';
+
+test('when headers are provided then returns the same headers', t => {
+  const table = new PaginatedTable([ 'Breed', 'Height' ], []);
+  t.deepEqual(table.headers, [ 'Breed', 'Height' ]);
+});
+
+test('when one filter is provided then returns table data matching the filter', t => {
+  const filters = [ new FilterMetadata('Breed', 'Bicycle') ];
+  const table = new PaginatedTable(['Breed'], [ [ 'Thoroughbred' ], [ 'Bicycle' ] ]);
+
+  const actual = table.filter(filters);
+
+  t.deepEqual(actual.tableData, [ [ 'Bicycle' ] ]);
+});
 
 test('when getting first page then returns only the first page of results', t => {
   const dataTable = new PaginatedTable(['Breed'], [['Thoroughbred'], ['Bicycle'], ['Boxer']]);
