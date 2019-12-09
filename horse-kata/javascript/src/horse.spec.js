@@ -4,7 +4,7 @@ import { filterSortPaginateTable } from './horse';
 import { FilterMetadata } from './filter-metadata';
 import { SortMetadata } from './sort-metadata';
 
-test.skip('FilterSortPaginate', t => {
+test('FilterSortPaginate', t => {
   const headers = SampleHorseData.getSampleHeaders();
   const tableData = SampleHorseData.getSampleTableData();
   const filters = SampleHorseData.getSampleFilters();
@@ -16,8 +16,8 @@ test.skip('FilterSortPaginate', t => {
   t.deepEqual(table.headers, headers);
   t.is(table.totalRows, 2);
   t.deepEqual(table.tableData, [
-    [ 'Thoroughbred', 'Bay', '1.6', '3', 'true' ],
-    [ 'Thoroughbred', 'Grey', '1.55', '3', 'true' ]
+    [ 'Thoroughbred', 'Grey', '1.55', '3', 'true' ],
+    [ 'Thoroughbred', 'Bay', '1.6', '3', 'true' ]
   ]);
 });
 
