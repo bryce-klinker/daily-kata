@@ -75,3 +75,15 @@ test('when sorting metadata is provided then returns table sorted by the column 
   t.deepEqual(table.tableData[1], [ 'Boxer' ]);
   t.deepEqual(table.tableData[2], [ 'Thoroughbred' ]);
 });
+
+test('when sorting by specific header then returns table sorted by the correct header', t => {
+  const headers = [ 'Breed', 'Colour' ];
+  const tableData = [ [ 'Thoroughbred', 'Azure' ], [ 'Bicycle', 'Blue' ], [ 'Boxer', 'Black' ] ];
+  const sortMetadata = new SortMetadata('Colour', 'Ascending');
+
+  const table = filterSortPaginateTable(headers, tableData, [], sortMetadata, null);
+
+  t.deepEqual(table.tableData[0], [ 'Thoroughbred', 'Azure' ]);
+  t.deepEqual(table.tableData[1], [ 'Boxer', 'Black' ]);
+  t.deepEqual(table.tableData[2], [ 'Bicycle', 'Blue' ]);
+});

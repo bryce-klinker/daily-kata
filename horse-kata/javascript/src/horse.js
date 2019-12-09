@@ -25,8 +25,9 @@ function sortTableData(sortMetadata, headers, tableData) {
     return tableData;
   }
 
+  const sortIndex = headers.indexOf(sortMetadata.column);
   tableData.sort((a, b) => {
-    return a[0] < b[0]
+    return a[sortIndex] < b[sortIndex]
       ? -1
       : 1;
   });
