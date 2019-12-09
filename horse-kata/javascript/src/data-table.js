@@ -10,4 +10,12 @@ export class DataTable {
   getColumnIndex(columnName) {
     return this.headers.indexOf(columnName);
   }
+
+  sort(sortMetadata) {
+    if (!sortMetadata) {
+        return this;
+    }
+
+    return sortMetadata.sortTable(this);
+  }
 }

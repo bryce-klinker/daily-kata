@@ -9,10 +9,10 @@ export function filterSortPaginateTable(headers, tableData, filters, sortMetadat
   tableData = filterTableData(filters, dataTable.headers, dataTable.tableData);
 
   dataTable = new DataTable(headers, tableData);
-  tableData = sortTableData(sortMetadata, dataTable);
+  dataTable = dataTable.sort(sortMetadata);
 
   // TODO: paginate horse table using paginationMetadata
-  return new PaginatedTable(headers, tableData);
+  return new PaginatedTable(headers, dataTable.tableData);
 }
 
 function filterTableData(filters, headers, tableData) {
@@ -21,12 +21,4 @@ function filterTableData(filters, headers, tableData) {
     tableData = tableData.filter(i => i[filterIndex] === filter.value);
   });
   return tableData;
-}
-
-function sortTableData(sortMetadata, dataTable) {
-  if (!sortMetadata) {
-    return dataTable.tableData;
-  }
-
-  return sortMetadata.sortTable(dataTable.headers, dataTable.tableData);
 }
