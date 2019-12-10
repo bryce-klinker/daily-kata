@@ -18,8 +18,13 @@ describe('String Calculator', () => {
     expect(sum).to.eql(13);
   });
 
-  it('should return sum of two numbers', () => {
+  it('should return 7 for string \'4,3\'', () => {
     const sum = calculateSum('4,3');
     expect(sum).to.eql(7);
+  });
+
+  it('should return 13 for string \'6,7\'', () => {
+    const sum = calculateSum('6,7');
+    expect(sum).to.eql(13);
   });
 });

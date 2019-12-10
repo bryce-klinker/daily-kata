@@ -6,5 +6,6 @@ export function calculateSum(input) {
     return parseInt(input)
   }
 
-  return 7;
+  const numbers = input.split(',');
+  return numbers.reduce((accumulator, value) => accumulator + parseInt(value), 0);
 }
