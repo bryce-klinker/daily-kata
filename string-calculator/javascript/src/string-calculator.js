@@ -6,6 +6,8 @@ export function calculateSum(input) {
     return parseInt(input)
   }
 
-  const numbers = input.split(',');
+  const numbers = input
+    .replace(/\n/g, ',')
+    .split(',');
   return numbers.reduce((accumulator, value) => accumulator + parseInt(value), 0);
 }

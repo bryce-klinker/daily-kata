@@ -27,6 +27,10 @@ describe('String Calculator', () => {
     assertCalculateSum('1,2,4,2,3', 12);
   });
 
+  it('should calculate sum using new line delimiter', () => {
+    assertCalculateSum('4,5\n6\n8', 23);
+  });
+
   function assertCalculateSum(input, expected) {
     const sum = calculateSum(input);
     expect(sum).to.eql(expected);
