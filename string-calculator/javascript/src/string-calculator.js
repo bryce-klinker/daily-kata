@@ -16,14 +16,15 @@ function replaceDelimitersWithDefault(input) {
 }
 
 function add(defaultDelimitedInput) {
-  const numbers = defaultDelimitedInput.split(DEFAULT_DELIMITER);
-  return numbers.reduce((accumulator, value) => {
-    const number = parseInt(value);
-    if (number < 0) {
-      throw `negatives not allowed: ${number}`
-    }
-    return accumulator + number
-  }, 0);
+  const numbers = defaultDelimitedInput.split(DEFAULT_DELIMITER)
+    .map(n => parseInt(n));
+
+  const negativeNumbers = numbers.filter(n => n < 0);
+  if (negativeNumbers.length > 0) {
+    throw `negatives not allowed: ${negativeNumbers.join(', ')}`
+  }
+
+  return numbers.reduce((accumulator, value) => accumulator + value, 0);
 }
 
 export function calculateSum(input) {
