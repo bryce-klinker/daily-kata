@@ -4,7 +4,26 @@ function isSingleNumber(input) {
     .every(i => !isNaN(parseInt(i)));
 }
 
+function hasCustomDelimiter(input) {
+  return input.startsWith('//[');
+}
+
+function getCustomDelimiter(input) {
+  return input.replace('//[', '').charAt(0);
+}
+
+function removeCustomDelimiter(input) {
+  const endOfCustomDelimiterIndex = input.indexOf('\n');
+  return input.substr(endOfCustomDelimiterIndex + 1);
+}
+
 function consolidateDelimiters(input) {
+  if (hasCustomDelimiter(input)) {
+    const delimiter = getCustomDelimiter(input);
+    input = removeCustomDelimiter(input)
+      .replace(new RegExp(delimiter, 'g'), ',');
+  }
+
   return input
     .replace(/\n/g, ',');
 }
