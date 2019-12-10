@@ -1,0 +1,20 @@
+{
+  "name": "string-calculator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bryce-klinker/daily-kata",
+  "author": "Bryce Klinker",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "mocha \"src/**/*.spec.js\" --require @babel/register"
+  },
+  "devDependencies": {
+    "@babel/core": "7.7.5",
+    "@babel/plugin-proposal-class-properties": "7.7.4",
+    "@babel/preset-env": "7.7.6",
+    "@babel/register": "7.7.4",
+    "chai": "4.2.0",
+    "mocha": "6.2.2"
+  }
+}
