@@ -7,4 +7,11 @@ describe('String Calculator', () => {
     const sum = calculateSum('');
     expect(sum).to.eql(0);
   });
+
+  it('should return 4 for string\'4\'', () => {
+    const sum = calculateSum('4');
+    expect(sum).to.eql(4);
+  });
+
+
 });
