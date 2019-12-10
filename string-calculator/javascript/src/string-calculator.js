@@ -1,17 +1,29 @@
+function isSingleNumber(input) {
+  return input
+    .split('')
+    .every(i => !isNaN(parseInt(i)));
+}
+
+function consolidateDelimiters(input) {
+  return input
+    .replace(/\n/g, ',');
+}
+
+function add(scrubbedInput) {
+  const numbers = scrubbedInput.split(',');
+  return numbers.reduce((accumulator, value) => accumulator + parseInt(value), 0);
+}
+
 export function calculateSum(input) {
   if (!input) {
     return 0;
   }
 
-  if (!input.includes(',')) {
+  if (isSingleNumber(input)) {
     return parseInt(input);
   }
 
-  if (input.includes('['))
-    console.log('HERE');
-
-  const numbers = input
-    .replace(/\n/g, ',')
-    .split(',');
-  return numbers.reduce((accumulator, value) => accumulator + parseInt(value), 0);
+  let scrubbedInput = consolidateDelimiters(input);
+  return add(scrubbedInput);
 }
+
