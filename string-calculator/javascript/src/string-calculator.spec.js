@@ -35,6 +35,11 @@ describe('String Calculator', () => {
     assertCalculateSum('//[;]\n6;5;2;8', 21);
   });
 
+  it('should raise an error when string has negative numbers', () => {
+    const input = '-5,2,2';
+    expect(() => calculateSum(input)).to.throw('negatives not allowed: -5');
+  });
+
   function assertCalculateSum(input, expected) {
     const sum = calculateSum(input);
     expect(sum).to.eql(expected);

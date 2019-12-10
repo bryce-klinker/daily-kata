@@ -17,7 +17,13 @@ function replaceDelimitersWithDefault(input) {
 
 function add(defaultDelimitedInput) {
   const numbers = defaultDelimitedInput.split(DEFAULT_DELIMITER);
-  return numbers.reduce((accumulator, value) => accumulator + parseInt(value), 0);
+  return numbers.reduce((accumulator, value) => {
+    const number = parseInt(value);
+    if (number < 0) {
+      throw `negatives not allowed: ${number}`
+    }
+    return accumulator + number
+  }, 0);
 }
 
 export function calculateSum(input) {
