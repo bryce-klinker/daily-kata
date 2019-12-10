@@ -23,6 +23,10 @@ describe('String Calculator', () => {
     assertCalculateSum('6,7', 13);
   });
 
+  it('should return 12 for string \'1,2,4,2,3\'', () => {
+    assertCalculateSum('1,2,4,2,3', 12);
+  });
+
   function assertCalculateSum(input, expected) {
     const sum = calculateSum(input);
     expect(sum).to.eql(expected);
