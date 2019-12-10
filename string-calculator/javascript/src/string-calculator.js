@@ -32,7 +32,3 @@ export function calculateSum(input) {
   const defaultDelimiterInput = replaceDelimitersWithDefault(input);
   return add(defaultDelimiterInput);
 }
-
-String.prototype.replaceAll = function(searchValue, replacement) {
-  return this.replace(new RegExp(searchValue, 'g'), replacement);
-};

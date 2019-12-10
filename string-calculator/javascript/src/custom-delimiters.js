@@ -11,7 +11,7 @@ export function replaceCustomDelimitersWithDefaultDelimiter(input, defaultDelimi
 
 function replaceCustomDelimiters(input, defaultDelimiter) {
   const delimiter = getCustomDelimiter(input);
-  const inputWithoutCustomDelimiterIndicator = removeCustomDelimiter(input);
+  const inputWithoutCustomDelimiterIndicator = removeCustomDelimiterIndicator(input);
   return replaceAll(inputWithoutCustomDelimiterIndicator, delimiter, defaultDelimiter);
 }
 
@@ -23,7 +23,7 @@ function getCustomDelimiter(input) {
   return input.replace(CUSTOM_DELIMITER_START_INDICATOR, '').charAt(0);
 }
 
-function removeCustomDelimiter(input) {
+function removeCustomDelimiterIndicator(input) {
   const endOfCustomDelimiterIndex = input.indexOf(CUSTOM_DELIMITER_END_INDICATOR);
   return input.substr(endOfCustomDelimiterIndex + 1);
 }
