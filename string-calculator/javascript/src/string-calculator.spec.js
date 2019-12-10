@@ -31,6 +31,10 @@ describe('String Calculator', () => {
     assertCalculateSum('4,5\n6\n8', 23);
   });
 
+  it.skip('should calculate sum using custom single character delimiter', () => {
+    assertCalculateSum('//[;]\n6;5;2;8', 21);
+  });
+
   function assertCalculateSum(input, expected) {
     const sum = calculateSum(input);
     expect(sum).to.eql(expected);

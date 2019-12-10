@@ -2,9 +2,13 @@ export function calculateSum(input) {
   if (!input) {
     return 0;
   }
+
   if (!input.includes(',')) {
-    return parseInt(input)
+    return parseInt(input);
   }
+
+  if (input.includes('['))
+    console.log('HERE');
 
   const numbers = input
     .replace(/\n/g, ',')
