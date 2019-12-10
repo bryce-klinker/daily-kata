@@ -1,35 +1,41 @@
+const DEFAULT_DELIMITER = ',';
+const CUSTOM_DELIMITER_START_INDICATOR = '//[';
+const CUSTOM_DELIMITER_END_INDICATOR = '\n';
+
 function isSingleNumber(input) {
+
   return input
     .split('')
     .every(i => !isNaN(parseInt(i)));
+
 }
 
 function hasCustomDelimiter(input) {
-  return input.startsWith('//[');
+  return input.startsWith(CUSTOM_DELIMITER_START_INDICATOR);
 }
 
 function getCustomDelimiter(input) {
-  return input.replace('//[', '').charAt(0);
+  return input.replace(CUSTOM_DELIMITER_START_INDICATOR, '').charAt(0);
+
 }
 
 function removeCustomDelimiter(input) {
-  const endOfCustomDelimiterIndex = input.indexOf('\n');
+  const endOfCustomDelimiterIndex = input.indexOf(CUSTOM_DELIMITER_END_INDICATOR);
   return input.substr(endOfCustomDelimiterIndex + 1);
 }
 
 function consolidateDelimiters(input) {
   if (hasCustomDelimiter(input)) {
     const delimiter = getCustomDelimiter(input);
-    input = removeCustomDelimiter(input)
-      .replace(new RegExp(delimiter, 'g'), ',');
+    input = removeCustomDelimiter(input).replaceAll(delimiter, DEFAULT_DELIMITER);
   }
 
   return input
-    .replace(/\n/g, ',');
+    .replaceAll('\n', DEFAULT_DELIMITER);
 }
 
 function add(scrubbedInput) {
-  const numbers = scrubbedInput.split(',');
+  const numbers = scrubbedInput.split(DEFAULT_DELIMITER);
   return numbers.reduce((accumulator, value) => accumulator + parseInt(value), 0);
 }
 
@@ -46,3 +52,7 @@ export function calculateSum(input) {
   return add(scrubbedInput);
 }
 
+String.prototype.replaceAll = function(searchValue, replacement) {
+
+  return this.replace(new RegExp(searchValue, 'g'), replacement);
+};
