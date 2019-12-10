@@ -68,6 +68,10 @@ describe('String Calculator', () => {
     expect(calculator.getCallCount()).to.eql(3);
   });
 
+  it('should ignore numbers greater than 1000', () => {
+    assertCalculateSum('1000,4,1001', 1004);
+  });
+
   function assertCalculateSum(input, expected) {
     const sum = calculator.add(input);
     expect(sum).to.eql(expected);

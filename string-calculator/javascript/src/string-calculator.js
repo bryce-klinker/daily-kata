@@ -38,7 +38,8 @@ export class StringCalculor {
 
   _calculateSum = (defaultDelimitedInput) => {
     const numbers = defaultDelimitedInput.split(DEFAULT_DELIMITER)
-      .map(n => parseInt(n));
+      .map(n => parseInt(n))
+      .filter(n => n <= 1000);
 
     const negativeNumbers = numbers.filter(n => n < 0);
     if (negativeNumbers.length > 0) {
