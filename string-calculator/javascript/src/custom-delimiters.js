@@ -1,7 +1,7 @@
 import { replaceAll } from './replace-all';
 
 const CUSTOM_DELIMITER_START_INDICATOR = '//[';
-const CUSTOM_DELIMITER_END_INDICATOR = '\n';
+const CUSTOM_DELIMITER_END_INDICATOR = ']\n';
 
 export function replaceCustomDelimitersWithDefaultDelimiter(input, defaultDelimiter) {
   return hasCustomDelimiter(input)
@@ -20,10 +20,12 @@ function hasCustomDelimiter(input) {
 }
 
 function getCustomDelimiter(input) {
-  return input.replace(CUSTOM_DELIMITER_START_INDICATOR, '').charAt(0);
+  const inputWithoutStartIndicator = input.replace(CUSTOM_DELIMITER_START_INDICATOR, '');
+  const indexOfEndIndicator = inputWithoutStartIndicator.indexOf(CUSTOM_DELIMITER_END_INDICATOR);
+  return inputWithoutStartIndicator.substr(0, indexOfEndIndicator);
 }
 
 function removeCustomDelimiterIndicator(input) {
   const endOfCustomDelimiterIndex = input.indexOf(CUSTOM_DELIMITER_END_INDICATOR);
-  return input.substr(endOfCustomDelimiterIndex + 1);
+  return input.substr(endOfCustomDelimiterIndex + 2);
 }

@@ -72,6 +72,11 @@ describe('String Calculator', () => {
     assertCalculateSum('1000,4,1001', 1004);
   });
 
+  it('should calculate sum using multi-character custom delimiter', () => {
+    const input = '//[;;;]\n5;;;9;;;10';
+    assertCalculateSum(input, 24);
+  });
+
   function assertCalculateSum(input, expected) {
     const sum = calculator.add(input);
     expect(sum).to.eql(expected);
