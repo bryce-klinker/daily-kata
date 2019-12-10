@@ -1,8 +1,14 @@
 import { describe } from 'mocha';
 import { expect } from 'chai';
-import { calculateSum } from './string-calculator';
+import { StringCalculor } from './string-calculator';
 
 describe('String Calculator', () => {
+  let calculator;
+
+  beforeEach(() => {
+    calculator = new StringCalculor();
+  });
+
   it('should return zero for empty string', () => {
     assertCalculateSum('', 0);
   });
@@ -37,16 +43,33 @@ describe('String Calculator', () => {
 
   it('should raise an error when string has single negative number', () => {
     const input = '-5,2,2';
-    expect(() => calculateSum(input)).to.throw('negatives not allowed: -5');
+    expect(() => calculator.add(input)).to.throw('negatives not allowed: -5');
   });
 
   it('should raise an error when string has multiple negative numbers', () => {
     const input = '-5,-2,-2';
-    expect(() => calculateSum(input)).to.throw('negatives not allowed: -5, -2, -2');
+    expect(() => calculator.add(input)).to.throw('negatives not allowed: -5, -2, -2');
+  });
+
+  it('should track the number of times called', () => {
+    calculator.add('1');
+    calculator.add('1');
+    calculator.add('1');
+    calculator.add('1');
+
+    expect(calculator.getCallCount()).to.eql(4);
+  });
+
+  it('should update number of times called', () => {
+    calculator.add('5');
+    calculator.add('5');
+    calculator.add('5');
+
+    expect(calculator.getCallCount()).to.eql(3);
   });
 
   function assertCalculateSum(input, expected) {
-    const sum = calculateSum(input);
+    const sum = calculator.add(input);
     expect(sum).to.eql(expected);
   }
 });
