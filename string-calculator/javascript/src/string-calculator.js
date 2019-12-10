@@ -1,41 +1,22 @@
+import { replaceAll } from './replace-all';
+import { replaceCustomDelimitersWithDefaultDelimiter } from './custom-delimiters';
+
 const DEFAULT_DELIMITER = ',';
-const CUSTOM_DELIMITER_START_INDICATOR = '//[';
-const CUSTOM_DELIMITER_END_INDICATOR = '\n';
 
 function isSingleNumber(input) {
-
   return input
     .split('')
     .every(i => !isNaN(parseInt(i)));
 
 }
 
-function hasCustomDelimiter(input) {
-  return input.startsWith(CUSTOM_DELIMITER_START_INDICATOR);
+function replaceDelimitersWithDefault(input) {
+  const inputWithoutCustomDelimiters = replaceCustomDelimitersWithDefaultDelimiter(input, DEFAULT_DELIMITER);
+  return replaceAll(inputWithoutCustomDelimiters, '\n', DEFAULT_DELIMITER);
 }
 
-function getCustomDelimiter(input) {
-  return input.replace(CUSTOM_DELIMITER_START_INDICATOR, '').charAt(0);
-
-}
-
-function removeCustomDelimiter(input) {
-  const endOfCustomDelimiterIndex = input.indexOf(CUSTOM_DELIMITER_END_INDICATOR);
-  return input.substr(endOfCustomDelimiterIndex + 1);
-}
-
-function consolidateDelimiters(input) {
-  if (hasCustomDelimiter(input)) {
-    const delimiter = getCustomDelimiter(input);
-    input = removeCustomDelimiter(input).replaceAll(delimiter, DEFAULT_DELIMITER);
-  }
-
-  return input
-    .replaceAll('\n', DEFAULT_DELIMITER);
-}
-
-function add(scrubbedInput) {
-  const numbers = scrubbedInput.split(DEFAULT_DELIMITER);
+function add(defaultDelimitedInput) {
+  const numbers = defaultDelimitedInput.split(DEFAULT_DELIMITER);
   return numbers.reduce((accumulator, value) => accumulator + parseInt(value), 0);
 }
 
@@ -48,11 +29,10 @@ export function calculateSum(input) {
     return parseInt(input);
   }
 
-  let scrubbedInput = consolidateDelimiters(input);
-  return add(scrubbedInput);
+  const defaultDelimiterInput = replaceDelimitersWithDefault(input);
+  return add(defaultDelimiterInput);
 }
 
 String.prototype.replaceAll = function(searchValue, replacement) {
-
   return this.replace(new RegExp(searchValue, 'g'), replacement);
 };
