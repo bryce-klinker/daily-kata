@@ -13,5 +13,8 @@ describe('String Calculator', () => {
     expect(sum).to.eql(4);
   });
 
-
+  it('should return sum of two numbers', () => {
+    const sum = calculateSum('4,3');
+    expect(sum).to.eql(7);
+  })
 });
