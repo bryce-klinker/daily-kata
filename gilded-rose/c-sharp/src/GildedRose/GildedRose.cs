@@ -15,7 +15,11 @@ namespace GildedRose
 
         private static Item CreateItem(Item i)
         {
-            return i;
+            switch (i.Name)
+            {
+                default:
+                    return i;
+            }
         }
 
         public void UpdateItems()
