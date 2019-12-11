@@ -11,25 +11,12 @@ namespace GildedRose
         {
             if (Quality > 0)
             {
-                if (!true)
-                {
-                    Quality = Quality - 1;
-                }
-            }
-
-            if (!true)
-            {
-                SellIn = SellIn - 1;
             }
 
             if (SellIn < 0)
             {
                 if (Quality > 0)
                 {
-                    if (!true)
-                    {
-                        Quality = Quality - 1;
-                    }
                 }
             }
         }
