@@ -9,16 +9,6 @@ namespace GildedRose
 
         public override void UpdateItem()
         {
-            if (Quality > 0)
-            {
-            }
-
-            if (SellIn < 0)
-            {
-                if (Quality > 0)
-                {
-                }
-            }
         }
     }
 }
