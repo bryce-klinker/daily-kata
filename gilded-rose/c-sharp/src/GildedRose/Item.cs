@@ -30,7 +30,7 @@ namespace GildedRose
         {
             if (Quality > 0)
             {
-                Quality = Quality - 1;
+                Quality--;
             }
 
             SellIn--;
@@ -39,7 +39,7 @@ namespace GildedRose
             {
                 if (Quality > 0)
                 {
-                    Quality = Quality - 1;
+                    Quality--;
                 }
             }
         }
