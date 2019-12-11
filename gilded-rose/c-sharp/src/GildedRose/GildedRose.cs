@@ -19,6 +19,8 @@ namespace GildedRose
             {
                 case "Aged Brie":
                     return new AgedBrie(i);
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    return new BackstagePass(i);
                 default:
                     return i;
             }
