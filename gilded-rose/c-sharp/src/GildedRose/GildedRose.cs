@@ -17,6 +17,8 @@ namespace GildedRose
         {
             switch (i.Name)
             {
+                case "Aged Brie":
+                    return new AgedBrie(i);
                 default:
                     return i;
             }
