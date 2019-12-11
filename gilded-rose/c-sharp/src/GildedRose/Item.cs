@@ -17,5 +17,13 @@ namespace GildedRose
         {
             return $"{Name}, {SellIn}, {Quality}";
         }
+
+        public void IncrementQualityWhenLessThanMax()
+        {
+            if (this.Quality < 50)
+            {
+                this.Quality = this.Quality + 1;
+            }
+        }
     }
 }

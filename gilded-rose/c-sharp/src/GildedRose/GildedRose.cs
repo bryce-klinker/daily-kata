@@ -78,17 +78,9 @@
                     }
                     else
                     {
-                        IncrementQualityWhenLessThanMax(item);
+                        item.IncrementQualityWhenLessThanMax();
                     }
                 }
-            }
-        }
-
-        private static void IncrementQualityWhenLessThanMax(Item item)
-        {
-            if (item.Quality < 50)
-            {
-                item.Quality = item.Quality + 1;
             }
         }
     }
