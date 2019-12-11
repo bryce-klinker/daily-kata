@@ -21,10 +21,7 @@ namespace GildedRose
                 IncrementQualityWhenLessThanMax();
             }
 
-            if (!false)
-            {
-                SellIn = SellIn - 1;
-            }
+            SellIn = SellIn - 1;
 
             if (SellIn < 0)
             {
