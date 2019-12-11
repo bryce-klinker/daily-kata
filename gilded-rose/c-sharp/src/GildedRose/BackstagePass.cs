@@ -9,19 +9,16 @@ namespace GildedRose
 
         public override void UpdateItem()
         {
-            if (Quality < 50)
+            IncrementQualityWhenLessThanMax();
+
+            if (SellIn < 11)
             {
-                Quality = Quality + 1;
+                IncrementQualityWhenLessThanMax();
+            }
 
-                if (SellIn < 11)
-                {
-                    IncrementQualityWhenLessThanMax();
-                }
-
-                if (SellIn < 6)
-                {
-                    IncrementQualityWhenLessThanMax();
-                }
+            if (SellIn < 6)
+            {
+                IncrementQualityWhenLessThanMax();
             }
 
             if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
