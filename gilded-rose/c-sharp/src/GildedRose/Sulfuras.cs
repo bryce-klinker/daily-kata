@@ -6,5 +6,10 @@ namespace GildedRose
             : base(item.Name, item.SellIn, item.Quality)
         {
         }
+
+        public override void UpdateItem()
+        {
+            base.UpdateItem();
+        }
     }
 }
