@@ -25,7 +25,7 @@ namespace GildedRose
 
             if (SellIn < 0)
             {
-                Quality = Quality - Quality;
+                Quality = 0;
             }
         }
     }
