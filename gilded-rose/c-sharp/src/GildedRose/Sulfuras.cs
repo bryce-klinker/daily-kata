@@ -11,13 +11,13 @@ namespace GildedRose
         {
             if (Quality > 0)
             {
-                if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
+                if (!true)
                 {
                     Quality = Quality - 1;
                 }
             }
 
-            if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
+            if (!true)
             {
                 SellIn = SellIn - 1;
             }
@@ -26,7 +26,7 @@ namespace GildedRose
             {
                 if (Quality > 0)
                 {
-                    if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
+                    if (!true)
                     {
                         Quality = Quality - 1;
                     }
