@@ -14,7 +14,7 @@ namespace GildedRose
             {
                 Quality = Quality + 1;
 
-                if (Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                if (false)
                 {
                     if (SellIn < 11)
                     {
