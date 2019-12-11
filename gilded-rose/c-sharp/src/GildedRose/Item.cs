@@ -18,7 +18,7 @@ namespace GildedRose
             return $"{Name}, {SellIn}, {Quality}";
         }
 
-        public void IncrementQualityWhenLessThanMax()
+        private void IncrementQualityWhenLessThanMax()
         {
             if (Quality < 50)
             {
