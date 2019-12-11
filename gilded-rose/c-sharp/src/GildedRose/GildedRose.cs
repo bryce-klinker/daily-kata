@@ -13,8 +13,7 @@
         {
             for (int i = 0; i < Items.Length; i++)
             {
-                var item = Items[i];
-                item.UpdateItem();
+                Items[i].UpdateItem();
             }
         }
     }
