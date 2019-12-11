@@ -10,7 +10,59 @@ namespace GildedRose
 
         public override void UpdateItem()
         {
-            base.UpdateItem();
+            if (!Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+            {
+                if (Quality > 0)
+                {
+                    if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
+                    {
+                        Quality = Quality - 1;
+                    }
+                }
+            }
+            else
+            {
+                if (Quality < 50)
+                {
+                    Quality = Quality + 1;
+
+                    if (Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                    {
+                        if (SellIn < 11)
+                        {
+                            IncrementQualityWhenLessThanMax();
+                        }
+
+                        if (SellIn < 6)
+                        {
+                            IncrementQualityWhenLessThanMax();
+                        }
+                    }
+                }
+            }
+
+            if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
+            {
+                SellIn = SellIn - 1;
+            }
+
+            if (SellIn < 0)
+            {
+                if (!Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                {
+                    if (Quality > 0)
+                    {
+                        if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
+                        {
+                            Quality = Quality - 1;
+                        }
+                    }
+                }
+                else
+                {
+                    Quality = Quality - Quality;
+                }
+            }
         }
     }
 }
