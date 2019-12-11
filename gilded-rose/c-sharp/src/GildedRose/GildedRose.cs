@@ -21,6 +21,8 @@ namespace GildedRose
                     return new AgedBrie(i);
                 case "Backstage passes to a TAFKAL80ETC concert":
                     return new BackstagePass(i);
+                case "Sulfuras, Hand of Ragnaros":
+                    return new Sulfuras(i);
                 default:
                     return i;
             }
