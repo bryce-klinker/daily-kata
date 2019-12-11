@@ -12,7 +12,7 @@ namespace GildedRose
         {
             IncrementQualityWhenLessThanMax();
 
-            SellIn = SellIn - 1;
+            SellIn--;
 
             if (SellIn < 0)
             {
