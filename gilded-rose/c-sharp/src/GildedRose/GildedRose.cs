@@ -11,9 +11,9 @@
 
         public void UpdateItems()
         {
-            for (int i = 0; i < Items.Length; i++)
+            foreach (var item in Items)
             {
-                Items[i].UpdateItem();
+                item.UpdateItem();
             }
         }
     }
