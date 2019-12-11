@@ -10,10 +10,7 @@ namespace GildedRose
 
         public override void UpdateItem()
         {
-            if (Quality < 50)
-            {
-                Quality = Quality + 1;
-            }
+            IncrementQualityWhenLessThanMax();
 
             SellIn = SellIn - 1;
 
