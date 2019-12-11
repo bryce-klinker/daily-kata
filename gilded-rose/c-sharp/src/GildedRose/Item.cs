@@ -28,34 +28,11 @@ namespace GildedRose
 
         public virtual void UpdateItem()
         {
-            if (!false)
+            if (Quality > 0)
             {
-                if (Quality > 0)
+                if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
                 {
-                    if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
-                    {
-                        Quality = Quality - 1;
-                    }
-                }
-            }
-            else
-            {
-                if (Quality < 50)
-                {
-                    Quality = Quality + 1;
-
-                    if (false)
-                    {
-                        if (SellIn < 11)
-                        {
-                            IncrementQualityWhenLessThanMax();
-                        }
-
-                        if (SellIn < 6)
-                        {
-                            IncrementQualityWhenLessThanMax();
-                        }
-                    }
+                    Quality = Quality - 1;
                 }
             }
 
@@ -66,19 +43,12 @@ namespace GildedRose
 
             if (SellIn < 0)
             {
-                if (!false)
+                if (Quality > 0)
                 {
-                    if (Quality > 0)
+                    if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
                     {
-                        if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
-                        {
-                            Quality = Quality - 1;
-                        }
+                        Quality = Quality - 1;
                     }
-                }
-                else
-                {
-                    Quality = Quality - Quality;
                 }
             }
         }
