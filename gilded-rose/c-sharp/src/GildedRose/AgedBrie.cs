@@ -13,19 +13,6 @@ namespace GildedRose
             if (Quality < 50)
             {
                 Quality = Quality + 1;
-
-                if (false)
-                {
-                    if (SellIn < 11)
-                    {
-                        IncrementQualityWhenLessThanMax();
-                    }
-
-                    if (SellIn < 6)
-                    {
-                        IncrementQualityWhenLessThanMax();
-                    }
-                }
             }
 
             if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
