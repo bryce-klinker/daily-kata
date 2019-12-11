@@ -7,5 +7,10 @@ namespace GildedRose
         {
             
         }
+
+        public override void UpdateItem()
+        {
+            base.UpdateItem();
+        }
     }
 }
