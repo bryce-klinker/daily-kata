@@ -5,7 +5,6 @@ namespace GildedRose
         public BackstagePass(Item item)
             : base(item.Name, item.SellIn, item.Quality)
         {
-            
         }
 
         public override void UpdateItem()
@@ -14,17 +13,14 @@ namespace GildedRose
             {
                 Quality = Quality + 1;
 
-                if (true)
+                if (SellIn < 11)
                 {
-                    if (SellIn < 11)
-                    {
-                        IncrementQualityWhenLessThanMax();
-                    }
+                    IncrementQualityWhenLessThanMax();
+                }
 
-                    if (SellIn < 6)
-                    {
-                        IncrementQualityWhenLessThanMax();
-                    }
+                if (SellIn < 6)
+                {
+                    IncrementQualityWhenLessThanMax();
                 }
             }
 
