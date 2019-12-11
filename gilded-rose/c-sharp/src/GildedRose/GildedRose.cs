@@ -1,4 +1,6 @@
-﻿namespace GildedRose
+﻿using System.Linq;
+
+namespace GildedRose
 {
     public class GildedRose
     {
@@ -6,7 +8,9 @@
 
         public GildedRose(Item[] items)
         {
-            Items = items;
+            Items = items
+                .Select(i => i)
+                .ToArray();
         }
 
         public void UpdateItems()
