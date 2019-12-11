@@ -26,7 +26,7 @@ namespace GildedRose
             }
         }
 
-        public void UpdateItem()
+        public virtual void UpdateItem()
         {
             if (!Name.Equals("Aged Brie")
                 && !Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
