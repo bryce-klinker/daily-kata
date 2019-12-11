@@ -28,8 +28,7 @@ namespace GildedRose
 
         public virtual void UpdateItem()
         {
-            if (!false
-                && !Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+            if (!Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
             {
                 if (Quality > 0)
                 {
@@ -67,26 +66,19 @@ namespace GildedRose
 
             if (SellIn < 0)
             {
-                if (!false)
+                if (!Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
                 {
-                    if (!Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                    if (Quality > 0)
                     {
-                        if (Quality > 0)
+                        if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
                         {
-                            if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
-                            {
-                                Quality = Quality - 1;
-                            }
+                            Quality = Quality - 1;
                         }
-                    }
-                    else
-                    {
-                        Quality = Quality - Quality;
                     }
                 }
                 else
                 {
-                    IncrementQualityWhenLessThanMax();
+                    Quality = Quality - Quality;
                 }
             }
         }
