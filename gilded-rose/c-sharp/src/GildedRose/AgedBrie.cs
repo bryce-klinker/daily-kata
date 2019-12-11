@@ -10,34 +10,20 @@ namespace GildedRose
 
         public override void UpdateItem()
         {
-            if (!true
-                && !Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+            if (Quality < 50)
             {
-                if (Quality > 0)
+                Quality = Quality + 1;
+
+                if (Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
                 {
-                    if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
+                    if (SellIn < 11)
                     {
-                        Quality = Quality - 1;
+                        IncrementQualityWhenLessThanMax();
                     }
-                }
-            }
-            else
-            {
-                if (Quality < 50)
-                {
-                    Quality = Quality + 1;
 
-                    if (Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                    if (SellIn < 6)
                     {
-                        if (SellIn < 11)
-                        {
-                            IncrementQualityWhenLessThanMax();
-                        }
-
-                        if (SellIn < 6)
-                        {
-                            IncrementQualityWhenLessThanMax();
-                        }
+                        IncrementQualityWhenLessThanMax();
                     }
                 }
             }
@@ -49,27 +35,7 @@ namespace GildedRose
 
             if (SellIn < 0)
             {
-                if (!true)
-                {
-                    if (!Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
-                    {
-                        if (Quality > 0)
-                        {
-                            if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
-                            {
-                                Quality = Quality - 1;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Quality = Quality - Quality;
-                    }
-                }
-                else
-                {
-                    IncrementQualityWhenLessThanMax();
-                }
+                IncrementQualityWhenLessThanMax();
             }
         }
     }
