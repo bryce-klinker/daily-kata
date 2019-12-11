@@ -9,8 +9,13 @@ namespace GildedRose
         public GildedRose(Item[] items)
         {
             Items = items
-                .Select(i => i)
+                .Select(CreateItem)
                 .ToArray();
+        }
+
+        private static Item CreateItem(Item i)
+        {
+            return i;
         }
 
         public void UpdateItems()
