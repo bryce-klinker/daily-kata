@@ -9,7 +9,29 @@ namespace GildedRose
 
         public override void UpdateItem()
         {
-            base.UpdateItem();
+            if (Quality > 0)
+            {
+                if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
+                {
+                    Quality = Quality - 1;
+                }
+            }
+
+            if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
+            {
+                SellIn = SellIn - 1;
+            }
+
+            if (SellIn < 0)
+            {
+                if (Quality > 0)
+                {
+                    if (!Name.Equals("Sulfuras, Hand of Ragnaros"))
+                    {
+                        Quality = Quality - 1;
+                    }
+                }
+            }
         }
     }
 }
