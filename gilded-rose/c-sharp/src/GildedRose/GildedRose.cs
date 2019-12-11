@@ -9,7 +9,7 @@
             Items = items;
         }
 
-        public void UpdateQuality()
+        public void UpdateItems()
         {
             for (int i = 0; i < Items.Length; i++)
             {

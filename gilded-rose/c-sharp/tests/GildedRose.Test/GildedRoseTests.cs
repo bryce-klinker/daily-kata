@@ -42,7 +42,7 @@ namespace GildedRose.Test
                     output.AppendLine(item.ToString());
                 }
                 output.AppendLine();
-                app.UpdateQuality();
+                app.UpdateItems();
             }
             return output.ToString();
         }
