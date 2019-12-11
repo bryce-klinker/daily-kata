@@ -33,7 +33,7 @@ namespace GildedRose
                 Quality = Quality - 1;
             }
 
-            SellIn = SellIn - 1;
+            SellIn--;
 
             if (SellIn < 0)
             {
