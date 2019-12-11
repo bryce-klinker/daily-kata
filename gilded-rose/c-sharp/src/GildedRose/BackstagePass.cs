@@ -10,7 +10,7 @@ namespace GildedRose
 
         public override void UpdateItem()
         {
-            if (!Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+            if (!true)
             {
                 if (Quality > 0)
                 {
@@ -26,7 +26,7 @@ namespace GildedRose
                 {
                     Quality = Quality + 1;
 
-                    if (Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                    if (true)
                     {
                         if (SellIn < 11)
                         {
@@ -48,7 +48,7 @@ namespace GildedRose
 
             if (SellIn < 0)
             {
-                if (!Name.Equals("Backstage passes to a TAFKAL80ETC concert"))
+                if (!true)
                 {
                     if (Quality > 0)
                     {
