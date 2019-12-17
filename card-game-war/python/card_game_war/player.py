@@ -10,3 +10,15 @@ class Player:
 
     def __init__(self, hand: List[Card]):
         self.__cards = hand
+        self.__current_card_index = 0
+
+    def play_card(self):
+        card = self.__cards[self.__current_card_index]
+        self.__update_current_card_index()
+        return card
+
+    def __update_current_card_index(self):
+        self.__current_card_index += 1
+
+        if self.__current_card_index >= len(self.hand):
+            self.__current_card_index = 0
