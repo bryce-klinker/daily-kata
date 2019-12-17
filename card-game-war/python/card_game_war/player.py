@@ -1,4 +1,12 @@
+from typing import List
+
+from card_game_war.card import Card
+
+
 class Player:
     @property
-    def cards(self):
-        return [None] * 26
+    def hand(self):
+        return self.__cards
+
+    def __init__(self, hand: List[Card]):
+        self.__cards = hand
