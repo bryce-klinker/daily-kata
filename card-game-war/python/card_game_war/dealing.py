@@ -17,6 +17,7 @@ def __get_randomized_deck():
     deck = __get_deck()
     return sample(deck, k=len(deck))
 
+
 def __get_deck():
     cards_by_suit = [__get_suit(item) for item in CardSuit.all()]
     return [card for suit_cards in cards_by_suit for card in suit_cards]
