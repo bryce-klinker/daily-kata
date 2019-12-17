@@ -25,7 +25,7 @@ class TestPlayer:
         assert first_card == Card(2, CardSuit.SPADE)
         assert second_card == Card(1, CardSuit.HEART)
 
-    def test_when_player_plays_entire_hand_then_the_next_card_is_the_first_card_in_the_players_hand(self):
+    def test_when_player_plays_entire_hand_then_the_next_card_is_none(self):
         hand = [
             Card(2, CardSuit.SPADE),
             Card(1, CardSuit.HEART),
@@ -36,16 +36,33 @@ class TestPlayer:
 
         card = player.play_card()
 
-        assert card == Card(2, CardSuit.SPADE)
+        assert card is None
 
-    def test_when_player_takes_cards_then_cards_are_added_to_the_bottom_of_the_players_hand(self):
-        initial_hand = [
-            Card(1, CardSuit.SPADE)
+    def test_when_player_plays_card_then_card_is_removed_from_hand(self):
+        hand = [
+            Card(2, CardSuit.SPADE)
         ]
 
-        player = Player(initial_hand)
+        player = Player(hand)
+
+        player.play_card()
+
+        assert len(player.hand) == 0
+
+    def test_when_player_takes_cards_then_cards_are_added_to_the_bottom_of_the_players_hand(self):
+        player = Player([Card(1, CardSuit.SPADE)])
 
         player.take_cards([Card(2, CardSuit.DIAMOND), Card(3, CardSuit.SPADE)])
 
         assert Card(2, CardSuit.DIAMOND) == player.hand[1]
         assert Card(3, CardSuit.SPADE) == player.hand[2]
+
+    def test_when_player_takes_cards_then_all_cards_are_added_to_the_bottom_of_the_players_hand(self):
+        player = Player([])
+
+        cards_taken = [Card(2, CardSuit.SPADE), Card(3, CardSuit.SPADE), Card(4, CardSuit.SPADE)]
+        player.take_cards(cards_taken)
+
+        assert Card(2, CardSuit.SPADE) == player.hand[0]
+        assert Card(3, CardSuit.SPADE) == player.hand[1]
+        assert Card(4, CardSuit.SPADE) == player.hand[2]

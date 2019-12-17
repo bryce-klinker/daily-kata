@@ -13,8 +13,11 @@ class Player:
         self.__current_card_index = 0
 
     def play_card(self):
-        card = self.__cards[self.__current_card_index]
-        self.__update_current_card_index()
+        if len(self.__cards) == 0:
+            return None
+
+        card = self.__cards[0]
+        self.__cards.remove(card)
         return card
 
     def __update_current_card_index(self):
@@ -24,5 +27,5 @@ class Player:
             self.__current_card_index = 0
 
     def take_cards(self, cards: List[Card]):
-        self.__cards.append(cards[0])
-        self.__cards.append(cards[1])
+        for card in cards:
+            self.__cards.append(card)
