@@ -25,3 +25,10 @@ class TestDealing:
         hands = deal_war_hands()
 
         assert hands[0][0] != hands[1][0]
+
+    def test_when_deck_is_dealt_then_cards_are_split_randomly(self):
+        first_deal = deal_war_hands()
+        second_deal = deal_war_hands()
+
+        assert first_deal[0][0] != second_deal[0][0]\
+            and first_deal[0][1] != second_deal[0][1]
