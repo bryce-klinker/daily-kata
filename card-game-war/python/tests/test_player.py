@@ -37,3 +37,15 @@ class TestPlayer:
         card = player.play_card()
 
         assert card == Card(2, CardSuit.SPADE)
+
+    def test_when_player_takes_cards_then_cards_are_added_to_the_bottom_of_the_players_hand(self):
+        initial_hand = [
+            Card(1, CardSuit.SPADE)
+        ]
+
+        player = Player(initial_hand)
+
+        player.take_cards([Card(2, CardSuit.DIAMOND), Card(3, CardSuit.SPADE)])
+
+        assert Card(2, CardSuit.DIAMOND) == player.hand[1]
+        assert Card(3, CardSuit.SPADE) == player.hand[2]

@@ -22,3 +22,7 @@ class Player:
 
         if self.__current_card_index >= len(self.hand):
             self.__current_card_index = 0
+
+    def take_cards(self, cards: List[Card]):
+        self.__cards.append(cards[0])
+        self.__cards.append(cards[1])
