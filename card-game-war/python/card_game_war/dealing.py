@@ -1,14 +1,21 @@
+from typing import List
+
+from card_game_war.card import Card
+from card_game_war.card_suit import CardSuit
+
+
 def deal_war_hands():
+    deck = __get_deck()
     return [
-        [Card(2)] * 26,
-        [Card(2)] * 26
+        deck[:26],
+        deck[26:]
     ]
 
 
-class Card:
-    @property
-    def value(self):
-        return self.__value
+def __get_deck():
+    cards_by_suit = [__get_suit(item) for item in CardSuit.all()]
+    return [card for suit_cards in cards_by_suit for card in suit_cards]
 
-    def __init__(self, value):
-        self.__value = value
+
+def __get_suit(suit: CardSuit) -> List[Card]:
+    return [Card(i, suit) for i in range(2, 15)]

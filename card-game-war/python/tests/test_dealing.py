@@ -19,3 +19,9 @@ class TestDealing:
 
         card = hands[0][0]
         assert 1 < card.value < 15
+        assert card.suit in ['Heart', 'Spade', 'Diamond', 'Club']
+
+    def test_when_deck_is_dealt_then_unique_cards_are_in_each_hand(self):
+        hands = deal_war_hands()
+
+        assert hands[0][0] != hands[1][0]
