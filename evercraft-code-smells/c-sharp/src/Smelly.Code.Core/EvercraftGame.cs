@@ -323,15 +323,21 @@ namespace Smelly.Code.Core
             var extension = Path.GetExtension(filePath);
             switch (extension)
             {
+                case ".json":
+                    return new JsonCharacterReader();
                 default:
                     return new CharacterReader();
             }
         }
     }
 
+    internal class JsonCharacterReader : CharacterReader
+    {
+    }
+
     public class CharacterReader
     {
-        public IEnumerable<Character> ReadCharacters(string filePath)
+        public virtual IEnumerable<Character> ReadCharacters(string filePath)
         {
             if (filePath.EndsWith(".json"))
             {
