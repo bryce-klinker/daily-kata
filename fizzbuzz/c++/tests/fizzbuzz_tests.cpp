@@ -26,3 +26,7 @@ TEST(FizzBuzz, when_number_is_5_then_returns_buzz)
     ASSERT_EQ("buzz", fizzbuzz(5));
 }
 
+TEST(FizzBuzz, when_number_is_15_then_returns_fizzbuzz)
+{
+    ASSERT_EQ("fizzbuzz", fizzbuzz(15));
+}

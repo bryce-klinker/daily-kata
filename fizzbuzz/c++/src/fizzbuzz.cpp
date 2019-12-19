@@ -9,6 +9,11 @@ bool is_divisible_by(int divisor, int number)
 
 string fizzbuzz(int number)
 {
+    if (is_divisible_by(15, number))
+    {
+        return "fizzbuzz";
+    }
+
     if (is_divisible_by(3, number))
     {
         return "fizz";
