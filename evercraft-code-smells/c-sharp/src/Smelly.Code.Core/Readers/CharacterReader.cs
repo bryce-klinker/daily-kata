@@ -5,7 +5,12 @@ using Microsoft.Data.Sqlite;
 
 namespace Smelly.Code.Core.Readers
 {
-    public class CharacterReader
+    public interface ICharacterReader
+    {
+        IEnumerable<Character> ReadCharacters(string filePath);
+    }
+
+    public class CharacterReader : ICharacterReader
     {
         public virtual IEnumerable<Character> ReadCharacters(string filePath)
         {

@@ -317,7 +317,7 @@ namespace Smelly.Code.Core
             Chars = CreateCharacterReader(filePath).ReadCharacters(filePath).ToArray();
         }
 
-        private static CharacterReader CreateCharacterReader(string filePath)
+        private static ICharacterReader CreateCharacterReader(string filePath)
         {
             var extension = Path.GetExtension(filePath);
             switch (extension)
