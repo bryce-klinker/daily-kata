@@ -1,2 +1,13 @@
 .idea/
 cmake-build-debug/
+googletest-build/
+googletest-download/
+googletest-src/
+bin/
+Testing/
+CMakeFiles/
+
+Makefile
+CTestTestfile.cmake
+cmake_install.cmake
+DartConfiguration.tcl
