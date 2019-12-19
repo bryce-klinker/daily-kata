@@ -315,10 +315,10 @@ namespace Smelly.Code.Core
 
         public void Load(string filePath)
         {
-            Chars = CreateCharacterReader().ReadCharacters(filePath).ToArray();
+            Chars = CreateCharacterReader(filePath).ReadCharacters(filePath).ToArray();
         }
 
-        private static CharacterReader CreateCharacterReader()
+        private static CharacterReader CreateCharacterReader(string filePath)
         {
             return new CharacterReader();
         }
