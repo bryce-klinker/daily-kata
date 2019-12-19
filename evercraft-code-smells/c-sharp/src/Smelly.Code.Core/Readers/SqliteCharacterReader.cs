@@ -3,7 +3,7 @@ using Microsoft.Data.Sqlite;
 
 namespace Smelly.Code.Core.Readers
 {
-    internal class SqliteCharacterReader : CharacterReader
+    internal class SqliteCharacterReader : CsvCharacterReader
     {
         public override IEnumerable<Character> ReadCharacters(string filePath)
         {

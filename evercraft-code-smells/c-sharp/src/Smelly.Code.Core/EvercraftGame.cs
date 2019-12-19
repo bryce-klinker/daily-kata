@@ -327,7 +327,7 @@ namespace Smelly.Code.Core
                 case ".db":
                     return new SqliteCharacterReader();
                 default:
-                    return new CharacterReader();
+                    return new CsvCharacterReader();
             }
         }
     }

@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Smelly.Code.Core.Readers
 {
-    internal class JsonCharacterReader : CharacterReader
+    internal class JsonCharacterReader : CsvCharacterReader
     {
         public override IEnumerable<Character> ReadCharacters(string filePath)
         {

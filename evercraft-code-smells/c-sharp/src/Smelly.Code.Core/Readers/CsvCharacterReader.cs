@@ -10,7 +10,7 @@ namespace Smelly.Code.Core.Readers
         IEnumerable<Character> ReadCharacters(string filePath);
     }
 
-    public class CharacterReader : ICharacterReader
+    public class CsvCharacterReader : ICharacterReader
     {
         public virtual IEnumerable<Character> ReadCharacters(string filePath)
         {
