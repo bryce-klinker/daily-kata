@@ -28,50 +28,10 @@ namespace Smelly.Code.Core
             if (charIndex != 0)
             {
                 Attacked[1] = true;
-                var strengthModifier = Chars[0].Strength.GetModifier();
 
-                sM = strengthModifier;
-
-                if (Chars[1].Dex == 1)
-                {
-                    dM = -5;
-                }
-                else if (Chars[1].Dex == 2 || Chars[1].Dex == 3)
-                {
-                    dM = -4;
-                }
-                else if (Chars[1].Dex == 4 || Chars[1].Dex == 5)
-                {
-                    dM = -3;
-                }
-                else if (Chars[1].Dex == 6 || Chars[1].Dex == 7)
-                {
-                    dM = -2;
-                }
-                else if (Chars[1].Dex == 8 || Chars[1].Dex == 9)
-                {
-                    dM = -1;
-                }
-                else if (Chars[1].Dex == 12 || Chars[1].Dex == 13)
-                {
-                    dM = 1;
-                }
-                else if (Chars[1].Dex == 14 || Chars[1].Dex == 15)
-                {
-                    dM = 2;
-                }
-                else if (Chars[1].Dex == 16 || Chars[1].Dex == 17)
-                {
-                    dM = 3;
-                }
-                else if (Chars[1].Dex == 18 || Chars[1].Dex == 19)
-                {
-                    dM = 4;
-                }
-                else if (Chars[1].Dex == 20)
-                {
-                    dM = 5;
-                }
+                sM = Chars[0].Strength.GetModifier();
+                dM = Chars[1].Dexterity.GetModifier();
+                
 
                 if (roll + sM >= Chars[1].Arm + dM)
                 {
@@ -99,47 +59,8 @@ namespace Smelly.Code.Core
             else
             {
                 Attacked[0] = true;
-                if (Chars[1].Str == 1)
-                {
-                    sM = -5;
-                }
-                else if (Chars[1].Str == 2 || Chars[1].Str == 3)
-                {
-                    sM = -4;
-                }
-                else if (Chars[1].Str == 4 || Chars[1].Str == 5)
-                {
-                    sM = -3;
-                }
-                else if (Chars[1].Str == 6 || Chars[1].Str == 7)
-                {
-                    sM = -2;
-                }
-                else if (Chars[1].Str == 8 || Chars[1].Str == 9)
-                {
-                    sM = -1;
-                }
-                else if (Chars[1].Str == 12 || Chars[1].Str == 13)
-                {
-                    sM = 1;
-                }
-                else if (Chars[1].Str == 14 || Chars[1].Str == 15)
-                {
-                    sM = 2;
-                }
-                else if (Chars[1].Str == 16 || Chars[1].Str == 17)
-                {
-                    sM = 3;
-                }
-                else if (Chars[1].Str == 18 || Chars[1].Str == 19)
-                {
-                    sM = 4;
-                }
-                else if (Chars[1].Str == 20)
-                {
-                    sM = 5;
-                }
-
+                sM = Chars[1].Strength.GetModifier();
+                
                 if (Chars[0].Dex == 1)
                 {
                     dM = -5;
