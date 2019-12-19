@@ -9,8 +9,6 @@ namespace Smelly.Code.Core.Readers
     {
         public override IEnumerable<Character> ReadCharacters(string filePath)
         {
-            if (filePath.EndsWith(".db"))
-            {
                 using (var connection = new SqliteConnection($"Data Source={filePath}"))
                 {
                     connection.Open();
@@ -32,19 +30,6 @@ namespace Smelly.Code.Core.Readers
                         }
                     }
                 }
-            }
-            else
-            {
-                var lines = File.ReadAllLines(filePath)
-                    .Skip(1)
-                    .ToArray();
-                for (var i = 0; i < lines.Length; i++)
-                {
-                    var vs = lines[i].Split(',');
-                    yield return new Character(vs[0], 5, int.Parse(vs[1]), int.Parse(vs[2]), int.Parse(vs[3]),
-                        int.Parse(vs[4]));
-                }
-            }
         }
     }
 }
