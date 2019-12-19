@@ -3,9 +3,9 @@ using Microsoft.Data.Sqlite;
 
 namespace Smelly.Code.Core.Readers
 {
-    internal class SqliteCharacterReader : CsvCharacterReader
+    internal class SqliteCharacterReader : ICharacterReader
     {
-        public override IEnumerable<Character> ReadCharacters(string filePath)
+        public IEnumerable<Character> ReadCharacters(string filePath)
         {
             using (var connection = new SqliteConnection($"Data Source={filePath}"))
             {

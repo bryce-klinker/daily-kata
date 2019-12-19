@@ -12,7 +12,7 @@ namespace Smelly.Code.Core.Readers
 
     public class CsvCharacterReader : ICharacterReader
     {
-        public virtual IEnumerable<Character> ReadCharacters(string filePath)
+        public IEnumerable<Character> ReadCharacters(string filePath)
         {
             var lines = File.ReadAllLines(filePath)
                 .Skip(1)
