@@ -291,25 +291,7 @@ namespace Smelly.Code.Core
 
         public void EquipArmor(ArmorType armorType, int weight, Character character)
         {
-            EquipCharacterArmor(armorType, weight, character);
-        }
-
-        private void EquipCharacterArmor(ArmorType armorType, int weight, Character character)
-        {
-            switch (armorType)
-            {
-                case ArmorType.Bronze:
-                    character.Arm = character.Arm - 1;
-                    break;
-                case ArmorType.Steel:
-                    character.Arm = character.Arm + 1;
-                    break;
-            }
-
-            if (weight > 50)
-            {
-                character.Arm = character.Arm + 2;
-            }
+            character.EquipArmor(armorType, weight);
         }
 
         public void ApplyStrength(int strength, Character character)

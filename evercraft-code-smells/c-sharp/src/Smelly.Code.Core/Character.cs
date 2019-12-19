@@ -18,5 +18,23 @@ namespace Smelly.Code.Core
             Const = @const;
             Name = name;
         }
+
+        public void EquipArmor(ArmorType armorType, int weight)
+        {
+            switch (armorType)
+            {
+                case ArmorType.Bronze:
+                    this.Arm = this.Arm - 1;
+                    break;
+                case ArmorType.Steel:
+                    this.Arm = this.Arm + 1;
+                    break;
+            }
+
+            if (weight > 50)
+            {
+                this.Arm = this.Arm + 2;
+            }
+        }
     }
 }
