@@ -3,3 +3,11 @@
 //
 
 #include "../include/fizzbuzz.h"
+#include <string>
+using namespace std;
+
+string fizzbuzz(int number)
+{
+    return "1";
+}
+
