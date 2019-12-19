@@ -27,34 +27,11 @@ namespace Smelly.Code.Core
 
             if (charIndex != 0)
             {
+                var characterBeingAttacked = Chars[1];
+                var attacker = Chars[0];
                 Attacked[1] = true;
 
-                sM = Chars[0].Strength.GetModifier();
-                dM = Chars[1].Dexterity.GetModifier();
-                
-
-                if (roll + sM >= Chars[1].Arm + dM)
-                {
-                    Chars[1].HitPts = Chars[1].HitPts - 1;
-                }
-
-                if (Chars[0].Str.HasValue)
-                {
-                    if (sM > 0 && roll + sM >= Chars[1].Arm)
-                    {
-                        Chars[1].HitPts = Chars[1].HitPts - sM;
-                    }
-                    else
-                    {
-                        Chars[1].HitPts = Chars[1].HitPts - 1;
-                    }
-                }
-
-
-                if (roll == 20)
-                {
-                    Chars[1].HitPts = Chars[1].HitPts - 1;
-                }
+                Attack(roll, attacker, characterBeingAttacked);
             }
             else
             {
@@ -78,6 +55,36 @@ namespace Smelly.Code.Core
                         Chars[0].HitPts = Chars[0].HitPts - 1;
                     }
                 }
+            }
+        }
+
+        private void Attack(int roll, Character attacker, Character target)
+        {
+            var sM = attacker.Strength.GetModifier();
+            var dM = target.Dexterity.GetModifier();
+
+
+            if (roll + sM >= target.Arm + dM)
+            {
+                target.HitPts = target.HitPts - 1;
+            }
+
+            if (attacker.Str.HasValue)
+            {
+                if (sM > 0 && roll + sM >= target.Arm)
+                {
+                    target.HitPts = target.HitPts - sM;
+                }
+                else
+                {
+                    target.HitPts = target.HitPts - 1;
+                }
+            }
+
+
+            if (roll == 20)
+            {
+                target.HitPts = target.HitPts - 1;
             }
         }
 
