@@ -315,12 +315,10 @@ namespace Smelly.Code.Core
 
         public void Load(string filePath)
         {
-            var charactersList = ReadCharacters(filePath);
-
-            Chars = charactersList.ToArray();
+            Chars = ReadCharacters(filePath, new CharacterReader()).ToArray();
         }
 
-        private IEnumerable<Character> ReadCharacters(string filePath)
+        private IEnumerable<Character> ReadCharacters(string filePath, CharacterReader characterReader)
         {
             if (filePath.EndsWith(".json"))
             {
@@ -368,5 +366,10 @@ namespace Smelly.Code.Core
                 }
             }
         }
+    }
+
+    public class CharacterReader
+    {
+        
     }
 }
