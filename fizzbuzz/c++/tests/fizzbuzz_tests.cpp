@@ -16,3 +16,8 @@ TEST(FizzBuzz, when_number_is_3_then_returns_fizz)
     ASSERT_EQ("fizz", fizzbuzz(3));
 }
 
+TEST(FizzBuzz, when_number_is_divisible_by_three_then_returns_fizz)
+{
+    ASSERT_EQ("fizz", fizzbuzz(6));
+}
+
