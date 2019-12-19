@@ -8,6 +8,10 @@ using namespace std;
 
 string fizzbuzz(int number)
 {
+    if (number == 3)
+    {
+        return "fizz";
+    }
     return to_string(number);
 }
 
