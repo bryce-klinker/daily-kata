@@ -60,48 +60,8 @@ namespace Smelly.Code.Core
             {
                 Attacked[0] = true;
                 sM = Chars[1].Strength.GetModifier();
+                dM = Chars[0].Dexterity.GetModifier();
                 
-                if (Chars[0].Dex == 1)
-                {
-                    dM = -5;
-                }
-                else if (Chars[0].Dex == 2 || Chars[0].Dex == 3)
-                {
-                    dM = -4;
-                }
-                else if (Chars[0].Dex == 4 || Chars[0].Dex == 5)
-                {
-                    dM = -3;
-                }
-                else if (Chars[0].Dex == 6 || Chars[0].Dex == 7)
-                {
-                    dM = -2;
-                }
-                else if (Chars[0].Dex == 8 || Chars[0].Dex == 9)
-                {
-                    dM = -1;
-                }
-                else if (Chars[0].Dex == 12 || Chars[0].Dex == 13)
-                {
-                    dM = 1;
-                }
-                else if (Chars[0].Dex == 14 || Chars[0].Dex == 15)
-                {
-                    dM = 2;
-                }
-                else if (Chars[0].Dex == 16 || Chars[0].Dex == 17)
-                {
-                    dM = 3;
-                }
-                else if (Chars[0].Dex == 18 || Chars[0].Dex == 19)
-                {
-                    dM = 4;
-                }
-                else if (Chars[0].Dex == 20)
-                {
-                    dM = 5;
-                }
-
                 if (roll + sM >= Chars[0].Arm + dM)
                 {
                     Chars[0].HitPts = Chars[0].HitPts - 1;
@@ -125,50 +85,7 @@ namespace Smelly.Code.Core
         {
             var charIndex = Array.IndexOf(Chars, character);
             var hitPoints = character.HitPts;
-            var hM = 0;
-            if (Chars[charIndex].Const.HasValue)
-            {
-                if (Chars[charIndex].Const == 1)
-                {
-                    hM = -5;
-                }
-                else if (Chars[charIndex].Const == 2 || Chars[charIndex].Const == 3)
-                {
-                    hM = -4;
-                }
-                else if (Chars[charIndex].Const == 4 || Chars[charIndex].Const == 5)
-                {
-                    hM = -3;
-                }
-                else if (Chars[charIndex].Const == 6 || Chars[charIndex].Const == 7)
-                {
-                    hM = -2;
-                }
-                else if (Chars[charIndex].Const == 8 || Chars[charIndex].Const == 9)
-                {
-                    hM = -1;
-                }
-                else if (Chars[charIndex].Const == 12 || Chars[charIndex].Const == 13)
-                {
-                    hM = 1;
-                }
-                else if (Chars[charIndex].Const == 14 || Chars[charIndex].Const == 15)
-                {
-                    hM = 2;
-                }
-                else if (Chars[charIndex].Const == 16 || Chars[charIndex].Const == 17)
-                {
-                    hM = 3;
-                }
-                else if (Chars[charIndex].Const == 18 || Chars[charIndex].Const == 19)
-                {
-                    hM = 4;
-                }
-                else if (Chars[charIndex].Const == 20)
-                {
-                    hM = 5;
-                }
-            }
+            var hM = Chars[charIndex].Constitution.GetModifier();
 
             return hitPoints + hM <= 0 && Attacked[charIndex];
         }
