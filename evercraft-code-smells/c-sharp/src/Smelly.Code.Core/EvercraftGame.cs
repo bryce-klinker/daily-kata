@@ -178,7 +178,7 @@ namespace Smelly.Code.Core
                 {
                     sM = 5;
                 }
-                
+
                 if (Chars[0].Dex == 1)
                 {
                     dM = -5;
@@ -219,12 +219,12 @@ namespace Smelly.Code.Core
                 {
                     dM = 5;
                 }
-                
+
                 if (roll + sM >= Chars[0].Arm + dM)
                 {
                     Chars[0].HitPts = Chars[0].HitPts - 1;
                 }
-                
+
                 if (Chars[1].Str.HasValue)
                 {
                     if (sM > 0 && roll + sM >= Chars[0].Arm)
@@ -287,6 +287,7 @@ namespace Smelly.Code.Core
                     hM = 5;
                 }
             }
+
             return hitPoints + hM <= 0 && Attacked[charIndex];
         }
 
@@ -335,7 +336,14 @@ namespace Smelly.Code.Core
     {
         public override IEnumerable<Character> ReadCharacters(string filePath)
         {
-            return base.ReadCharacters(filePath);
+            var jObject = JObject.Parse(File.ReadAllText(filePath));
+            var characters = jObject.Value<JArray>("characters");
+            for (var i = 0; i < characters.Count; i++)
+            {
+                yield return new Character(characters[i].Value<string>("name"), 5, characters[i].Value<int>("arm"),
+                    characters[i].Value<int>("str"), characters[i].Value<int>("dex"),
+                    characters[i].Value<int>("const"));
+            }
         }
     }
 
@@ -350,7 +358,8 @@ namespace Smelly.Code.Core
                 for (var i = 0; i < characters.Count; i++)
                 {
                     yield return new Character(characters[i].Value<string>("name"), 5, characters[i].Value<int>("arm"),
-                        characters[i].Value<int>("str"), characters[i].Value<int>("dex"), characters[i].Value<int>("const"));
+                        characters[i].Value<int>("str"), characters[i].Value<int>("dex"),
+                        characters[i].Value<int>("const"));
                 }
             }
             else if (filePath.EndsWith(".db"))
@@ -368,7 +377,8 @@ namespace Smelly.Code.Core
                             while (reader.Read())
                             {
                                 yield return new Character(reader.GetFieldValue<string>(0), 5,
-                                    reader.GetFieldValue<int>(1), reader.GetFieldValue<int>(2), reader.GetFieldValue<int>(3),
+                                    reader.GetFieldValue<int>(1), reader.GetFieldValue<int>(2),
+                                    reader.GetFieldValue<int>(3),
                                     reader.GetFieldValue<int>(4));
                                 current = current + 1;
                             }
