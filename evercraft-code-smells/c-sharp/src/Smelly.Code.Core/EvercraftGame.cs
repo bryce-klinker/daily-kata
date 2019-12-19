@@ -351,18 +351,7 @@ namespace Smelly.Code.Core
     {
         public virtual IEnumerable<Character> ReadCharacters(string filePath)
         {
-            if (filePath.EndsWith(".json"))
-            {
-                var jObject = JObject.Parse(File.ReadAllText(filePath));
-                var characters = jObject.Value<JArray>("characters");
-                for (var i = 0; i < characters.Count; i++)
-                {
-                    yield return new Character(characters[i].Value<string>("name"), 5, characters[i].Value<int>("arm"),
-                        characters[i].Value<int>("str"), characters[i].Value<int>("dex"),
-                        characters[i].Value<int>("const"));
-                }
-            }
-            else if (filePath.EndsWith(".db"))
+            if (filePath.EndsWith(".db"))
             {
                 using (var connection = new SqliteConnection($"Data Source={filePath}"))
                 {
