@@ -2,19 +2,19 @@
 #include <string>
 using namespace std;
 
-bool is_divisible_by(int number, int divisor)
+bool is_divisible_by(int divisor, int number)
 {
     return number % divisor == 0;
 }
 
 string fizzbuzz(int number)
 {
-    if (is_divisible_by(number, 3))
+    if (is_divisible_by(3, number))
     {
         return "fizz";
     }
 
-    if (is_divisible_by(number, 5))
+    if (is_divisible_by(5, number))
     {
         return "buzz";
     }
