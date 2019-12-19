@@ -28,47 +28,7 @@ namespace Smelly.Code.Core
             if (charIndex != 0)
             {
                 Attacked[1] = true;
-                var strengthModifier = 0;
-                if (Chars[0].Str == 1)
-                {
-                    strengthModifier = -5;
-                }
-                else if (Chars[0].Str == 2 || Chars[0].Str == 3)
-                {
-                    strengthModifier = -4;
-                }
-                else if (Chars[0].Str == 4 || Chars[0].Str == 5)
-                {
-                    strengthModifier = -3;
-                }
-                else if (Chars[0].Str == 6 || Chars[0].Str == 7)
-                {
-                    strengthModifier = -2;
-                }
-                else if (Chars[0].Str == 8 || Chars[0].Str == 9)
-                {
-                    strengthModifier = -1;
-                }
-                else if (Chars[0].Str == 12 || Chars[0].Str == 13)
-                {
-                    strengthModifier = 1;
-                }
-                else if (Chars[0].Str == 14 || Chars[0].Str == 15)
-                {
-                    strengthModifier = 2;
-                }
-                else if (Chars[0].Str == 16 || Chars[0].Str == 17)
-                {
-                    strengthModifier = 3;
-                }
-                else if (Chars[0].Str == 18 || Chars[0].Str == 19)
-                {
-                    strengthModifier = 4;
-                }
-                else if (Chars[0].Str == 20)
-                {
-                    strengthModifier = 5;
-                }
+                var strengthModifier = GetModifier();
 
                 sM = strengthModifier;
 
@@ -238,6 +198,61 @@ namespace Smelly.Code.Core
                     }
                 }
             }
+        }
+
+        private int GetModifier()
+        {
+            if (Chars[0].Str == 1)
+            {
+                return -5;
+            }
+
+            if (Chars[0].Str == 2 || Chars[0].Str == 3)
+            {
+                return -4;
+            }
+
+            if (Chars[0].Str == 4 || Chars[0].Str == 5)
+            {
+                return -3;
+            }
+
+            if (Chars[0].Str == 6 || Chars[0].Str == 7)
+            {
+                return -2;
+            }
+
+            if (Chars[0].Str == 8 || Chars[0].Str == 9)
+            {
+                return -1;
+            }
+
+            if (Chars[0].Str == 12 || Chars[0].Str == 13)
+            {
+                return 1;
+            }
+
+            if (Chars[0].Str == 14 || Chars[0].Str == 15)
+            {
+                return 2;
+            }
+
+            if (Chars[0].Str == 16 || Chars[0].Str == 17)
+            {
+                return 3;
+            }
+
+            if (Chars[0].Str == 18 || Chars[0].Str == 19)
+            {
+                return 4;
+            }
+
+            if (Chars[0].Str == 20)
+            {
+                return 5;
+            }
+
+            return 0;
         }
 
         public bool IsDead(Character character)
