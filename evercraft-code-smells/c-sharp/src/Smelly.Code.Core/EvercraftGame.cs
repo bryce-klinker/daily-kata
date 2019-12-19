@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Data.Sqlite;
@@ -314,13 +315,14 @@ namespace Smelly.Code.Core
 
         public void Load(string filePath)
         {
+            var charactersList = new List<Character>();
             if (filePath.EndsWith(".json"))
             {
                 var jObject = JObject.Parse(File.ReadAllText(filePath));
                 var characters = jObject.Value<JArray>("characters");
                 for (var i = 0; i < characters.Count; i++)
                 {
-                    Chars[i] = new Character(characters[i].Value<string>("name"), 5, characters[i].Value<int>("arm"), characters[i].Value<int>("str"), characters[i].Value<int>("dex"), characters[i].Value<int>("const"));
+                    charactersList.Add(new Character(characters[i].Value<string>("name"), 5, characters[i].Value<int>("arm"), characters[i].Value<int>("str"), characters[i].Value<int>("dex"), characters[i].Value<int>("const")));
                 }
             }
             else if (filePath.EndsWith(".db"))
@@ -337,7 +339,7 @@ namespace Smelly.Code.Core
                             var current = 0;
                             while (reader.Read())
                             {
-                                Chars[current] = new Character(reader.GetFieldValue<string>(0), 5, reader.GetFieldValue<int>(1), reader.GetFieldValue<int>(2), reader.GetFieldValue<int>(3), reader.GetFieldValue<int>(4));
+                                charactersList.Add(new Character(reader.GetFieldValue<string>(0), 5, reader.GetFieldValue<int>(1), reader.GetFieldValue<int>(2), reader.GetFieldValue<int>(3), reader.GetFieldValue<int>(4)));
                                 current = current + 1;
                             }
                         }    
@@ -352,9 +354,11 @@ namespace Smelly.Code.Core
                 for (var i = 0; i < lines.Length; i++)
                 {
                     var vs = lines[i].Split(',');
-                    Chars[i] = new Character(vs[0], 5, int.Parse(vs[1]), int.Parse(vs[2]), int.Parse(vs[3]), int.Parse(vs[4]));
+                    charactersList.Add(new Character(vs[0], 5, int.Parse(vs[1]), int.Parse(vs[2]), int.Parse(vs[3]), int.Parse(vs[4])));
                 }
             }
+
+            Chars = charactersList.ToArray();
         }
     }
 }
