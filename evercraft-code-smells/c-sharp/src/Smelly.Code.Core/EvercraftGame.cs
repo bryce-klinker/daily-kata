@@ -28,7 +28,7 @@ namespace Smelly.Code.Core
             if (charIndex != 0)
             {
                 Attacked[1] = true;
-                var strengthModifier = GetModifier();
+                var strengthModifier = Chars[0].Strength.GetModifier();
 
                 sM = strengthModifier;
 
@@ -198,61 +198,6 @@ namespace Smelly.Code.Core
                     }
                 }
             }
-        }
-
-        private int GetModifier()
-        {
-            if (Chars[0].Strength == 1)
-            {
-                return -5;
-            }
-
-            if (Chars[0].Strength == 2 || Chars[0].Strength == 3)
-            {
-                return -4;
-            }
-
-            if (Chars[0].Strength == 4 || Chars[0].Strength == 5)
-            {
-                return -3;
-            }
-
-            if (Chars[0].Strength == 6 || Chars[0].Strength == 7)
-            {
-                return -2;
-            }
-
-            if (Chars[0].Strength == 8 || Chars[0].Strength == 9)
-            {
-                return -1;
-            }
-
-            if (Chars[0].Strength == 12 || Chars[0].Strength == 13)
-            {
-                return 1;
-            }
-
-            if (Chars[0].Strength == 14 || Chars[0].Strength == 15)
-            {
-                return 2;
-            }
-
-            if (Chars[0].Strength == 16 || Chars[0].Strength == 17)
-            {
-                return 3;
-            }
-
-            if (Chars[0].Strength == 18 || Chars[0].Strength == 19)
-            {
-                return 4;
-            }
-
-            if (Chars[0].Strength == 20)
-            {
-                return 5;
-            }
-
-            return 0;
         }
 
         public bool IsDead(Character character)
