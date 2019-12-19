@@ -291,6 +291,11 @@ namespace Smelly.Code.Core
 
         public void EquipArmor(ArmorType armorType, int weight, Character character)
         {
+            EquipCharacterArmor(armorType, weight, character);
+        }
+
+        private void EquipCharacterArmor(ArmorType armorType, int weight, Character character)
+        {
             switch (armorType)
             {
                 case ArmorType.Bronze:
