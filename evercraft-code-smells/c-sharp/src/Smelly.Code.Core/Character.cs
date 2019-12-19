@@ -56,5 +56,34 @@ namespace Smelly.Code.Core
                 this.Arm = this.Arm + 2;
             }
         }
+
+        public void Attack(int roll, Character target)
+        {
+            var sM = this.Strength.GetModifier();
+            var dM = target.Dexterity.GetModifier();
+
+            if (roll + sM >= target.Arm + dM)
+            {
+                target.HitPts = target.HitPts - 1;
+            }
+
+            if (this.Str.HasValue)
+            {
+                if (sM > 0 && roll + sM >= target.Arm)
+                {
+                    target.HitPts = target.HitPts - sM;
+                }
+                else
+                {
+                    target.HitPts = target.HitPts - 1;
+                }
+            }
+
+
+            if (roll == 20)
+            {
+                target.HitPts = target.HitPts - 1;
+            }
+        }
     }
 }

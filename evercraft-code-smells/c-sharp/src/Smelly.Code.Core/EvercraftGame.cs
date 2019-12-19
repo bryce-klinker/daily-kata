@@ -31,7 +31,7 @@ namespace Smelly.Code.Core
                 var attacker = Chars[0];
                 Attacked[1] = true;
 
-                Attack(roll, attacker, characterBeingAttacked);
+                attacker.Attack(roll, characterBeingAttacked);
             }
             else
             {
@@ -55,36 +55,6 @@ namespace Smelly.Code.Core
                         Chars[0].HitPts = Chars[0].HitPts - 1;
                     }
                 }
-            }
-        }
-
-        private void Attack(int roll, Character attacker, Character target)
-        {
-            var sM = attacker.Strength.GetModifier();
-            var dM = target.Dexterity.GetModifier();
-
-
-            if (roll + sM >= target.Arm + dM)
-            {
-                target.HitPts = target.HitPts - 1;
-            }
-
-            if (attacker.Str.HasValue)
-            {
-                if (sM > 0 && roll + sM >= target.Arm)
-                {
-                    target.HitPts = target.HitPts - sM;
-                }
-                else
-                {
-                    target.HitPts = target.HitPts - 1;
-                }
-            }
-
-
-            if (roll == 20)
-            {
-                target.HitPts = target.HitPts - 1;
             }
         }
 
