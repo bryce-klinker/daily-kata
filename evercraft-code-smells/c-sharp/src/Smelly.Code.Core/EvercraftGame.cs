@@ -324,6 +324,8 @@ namespace Smelly.Code.Core
             {
                 case ".json":
                     return new JsonCharacterReader();
+                case ".db":
+                    return new SqliteCharacterReader();
                 default:
                     return new CharacterReader();
             }
