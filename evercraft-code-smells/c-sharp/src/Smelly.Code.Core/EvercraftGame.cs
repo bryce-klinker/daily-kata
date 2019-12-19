@@ -28,46 +28,49 @@ namespace Smelly.Code.Core
             if (charIndex != 0)
             {
                 Attacked[1] = true;
+                var strengthModifier = 0;
                 if (Chars[0].Str == 1)
                 {
-                    sM = -5;
+                    strengthModifier = -5;
                 }
                 else if (Chars[0].Str == 2 || Chars[0].Str == 3)
                 {
-                    sM = -4;
+                    strengthModifier = -4;
                 }
                 else if (Chars[0].Str == 4 || Chars[0].Str == 5)
                 {
-                    sM = -3;
+                    strengthModifier = -3;
                 }
                 else if (Chars[0].Str == 6 || Chars[0].Str == 7)
                 {
-                    sM = -2;
+                    strengthModifier = -2;
                 }
                 else if (Chars[0].Str == 8 || Chars[0].Str == 9)
                 {
-                    sM = -1;
+                    strengthModifier = -1;
                 }
                 else if (Chars[0].Str == 12 || Chars[0].Str == 13)
                 {
-                    sM = 1;
+                    strengthModifier = 1;
                 }
                 else if (Chars[0].Str == 14 || Chars[0].Str == 15)
                 {
-                    sM = 2;
+                    strengthModifier = 2;
                 }
                 else if (Chars[0].Str == 16 || Chars[0].Str == 17)
                 {
-                    sM = 3;
+                    strengthModifier = 3;
                 }
                 else if (Chars[0].Str == 18 || Chars[0].Str == 19)
                 {
-                    sM = 4;
+                    strengthModifier = 4;
                 }
                 else if (Chars[0].Str == 20)
                 {
-                    sM = 5;
+                    strengthModifier = 5;
                 }
+
+                sM = strengthModifier;
 
                 if (Chars[1].Dex == 1)
                 {
