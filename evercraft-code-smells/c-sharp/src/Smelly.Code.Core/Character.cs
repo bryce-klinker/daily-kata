@@ -4,27 +4,29 @@ namespace Smelly.Code.Core
 {
     public class Character
     {
-        private readonly Dictionary<string, CharacterAttribute> _attributes;
         public string Name { get; set; }
         public int HitPts { get; set; }
         public int Arm { get; set; }
 
+        public CharacterAttribute Strength { get; set; }
+        public CharacterAttribute Dexterity { get; set; }
+        public CharacterAttribute Constitution { get; set; }
         public int? Str
         {
-            get => _attributes[nameof(Str)];
-            set => _attributes[nameof(Str)] = value;
+            get => Strength;
+            set => Strength = value;
         }
 
         public int? Dex
         {
-            get => _attributes[nameof(Dex)];
-            set => _attributes[nameof(Dex)] = value;
+            get => Dexterity;
+            set => Dexterity = value;
         }
 
         public int? Const
         {
-            get => _attributes[nameof(Const)];
-            set => _attributes[nameof(Const)] = value;
+            get => Constitution;
+            set => Constitution = value;
         }
 
         public Character(string name, int hitPts, int arm, int? str, int? dex, int? @const)
@@ -32,12 +34,9 @@ namespace Smelly.Code.Core
             HitPts = hitPts;
             Arm = arm;
             Name = name;
-            _attributes = new Dictionary<string, CharacterAttribute>
-            {
-                {nameof(Str), new CharacterAttribute(str)},
-                {nameof(Dex), new CharacterAttribute(dex)},
-                {nameof(Const), new CharacterAttribute(@const)},
-            };
+            Strength = new CharacterAttribute(str);
+            Dexterity = new CharacterAttribute(dex);
+            Constitution = new CharacterAttribute(@const);
         }
 
         public void EquipArmor(ArmorType armorType, int weight)
