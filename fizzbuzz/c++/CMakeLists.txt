@@ -19,7 +19,8 @@ add_subdirectory("${CMAKE_BINARY_DIR}/googletest-src"
         "${CMAKE_BINARY_DIR}/googletest-build"
         )
 
-add_executable(fizzbuzz_tests src/fizzbuzz.cpp tests/fizzbuzz_tests.cpp tests/main.cpp tests/main.h)
-target_link_libraries(fizzbuzz_tests gtest)
+add_library(fizzbuzz src/fizzbuzz.cpp)
+add_executable(fizzbuzz_tests tests/fizzbuzz_tests.cpp tests/main.cpp tests/main.h)
+target_link_libraries(fizzbuzz_tests fizzbuzz gtest)
 add_test(NAME fizzbuzz_test COMMAND fizzbuzz_tests)
 
