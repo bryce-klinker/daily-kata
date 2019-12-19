@@ -320,7 +320,12 @@ namespace Smelly.Code.Core
 
         private static CharacterReader CreateCharacterReader(string filePath)
         {
-            return new CharacterReader();
+            var extension = Path.GetExtension(filePath);
+            switch (extension)
+            {
+                default:
+                    return new CharacterReader();
+            }
         }
     }
 
