@@ -333,6 +333,10 @@ namespace Smelly.Code.Core
 
     internal class JsonCharacterReader : CharacterReader
     {
+        public override IEnumerable<Character> ReadCharacters(string filePath)
+        {
+            return base.ReadCharacters(filePath);
+        }
     }
 
     public class CharacterReader
